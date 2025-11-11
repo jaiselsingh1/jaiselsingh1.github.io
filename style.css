@@ -1,13 +1,28 @@
 /* Flexoki Light Theme Colors */
 :root {
-    --bg: #FFFCF0;
-    --bg-2: #F2F0E5;
-    --text: #100F0F;
-    --text-2: #6F6E69;
-    --text-3: #B7B5AC;
-    --accent: #205EA6;
-    --accent-2: #24837B;
-    --border: #E6E4D9;
+    /* Base colors */
+    --flexoki-black: #100F0F;
+    --flexoki-paper: #FFFCF0;
+    
+    /* Grays */
+    --flexoki-50: #F2F0E5;
+    --flexoki-100: #E6E4D9;
+    --flexoki-300: #B7B5AC;
+    --flexoki-600: #6F6E69;
+    
+    /* Accent colors */
+    --flexoki-blue-600: #205EA6;
+    --flexoki-cyan-600: #24837B;
+    
+    /* Semantic tokens */
+    --bg: var(--flexoki-paper);
+    --bg-2: var(--flexoki-50);
+    --text: var(--flexoki-black);
+    --text-2: var(--flexoki-600);
+    --text-3: var(--flexoki-300);
+    --accent: var(--flexoki-blue-600);
+    --accent-2: var(--flexoki-cyan-600);
+    --border: var(--flexoki-100);
 }
 
 * {
