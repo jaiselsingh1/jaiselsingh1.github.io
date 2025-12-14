@@ -8,7 +8,7 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Quartz 4",
+    pageTitle: "Jaisel Singh",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
@@ -16,39 +16,39 @@ const config: QuartzConfig = {
       provider: "plausible",
     },
     locale: "en-US",
-    baseUrl: "quartz.jzhao.xyz",
+    baseUrl: "jaiselsingh1.github.io",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
-        code: "IBM Plex Mono",
+        header: "Inter",
+        body: "Inter",
+        code: "JetBrains Mono",
       },
       colors: {
         lightMode: {
-          light: "#faf8f8",
-          lightgray: "#e5e5e5",
-          gray: "#b8b8b8",
-          darkgray: "#4e4e4e",
-          dark: "#2b2b2b",
-          secondary: "#284b63",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#fff23688",
+          light: "#1a1625",           // Deep purple background
+          lightgray: "#2d2438",       // Slightly lighter purple
+          gray: "#7c7c99",            // Muted purple-gray
+          darkgray: "#e8d5b7",        // Warm beige text
+          dark: "#ffd4a3",            // Peachy orange for headings
+          secondary: "#ff8552",       // Bright sunset orange for links
+          tertiary: "#ffb380",        // Light orange accent
+          highlight: "rgba(255, 133, 82, 0.15)", // Orange highlight
+          textHighlight: "#ff855288", // Orange text highlight
         },
         darkMode: {
-          light: "#161618",
-          lightgray: "#393639",
-          gray: "#646464",
-          darkgray: "#d4d4d4",
-          dark: "#ebebec",
-          secondary: "#7b97aa",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#b3aa0288",
+          light: "#0f0d15",           // Even darker purple
+          lightgray: "#1f1a2e",       // Dark purple
+          gray: "#5c5c79",            // Darker muted purple
+          darkgray: "#e8d5b7",        // Warm beige
+          dark: "#ffd4a3",            // Peachy orange
+          secondary: "#ff8552",       // Sunset orange
+          tertiary: "#ffb380",        // Light orange
+          highlight: "rgba(255, 133, 82, 0.15)",
+          textHighlight: "#ff855288",
         },
       },
     },
