@@ -1,6 +1,5 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
-
 /**
  * Quartz 4 Configuration
  *
@@ -23,32 +22,32 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Inter",
-        body: "Inter",
-        code: "JetBrains Mono",
+        header: "Fira Code",
+        body: "Fira Code",
+        code: "Fira Code",
       },
       colors: {
         lightMode: {
-          light: "#1a1625",           // Deep purple background
-          lightgray: "#2d2438",       // Slightly lighter purple
-          gray: "#7c7c99",            // Muted purple-gray
-          darkgray: "#e8d5b7",        // Warm beige text
-          dark: "#ffd4a3",            // Peachy orange for headings
-          secondary: "#ff8552",       // Bright sunset orange for links
-          tertiary: "#ffb380",        // Light orange accent
-          highlight: "rgba(255, 133, 82, 0.15)", // Orange highlight
-          textHighlight: "#ff855288", // Orange text highlight
+          light: "#FFFCF0",           // Paper
+          lightgray: "#E6E4D9",       // 100
+          gray: "#B7B5AC",            // 300
+          darkgray: "#6F6E69",        // 600
+          dark: "#100F0F",            // Black
+          secondary: "#205EA6",       // Blue
+          tertiary: "#24837B",        // Cyan
+          highlight: "rgba(32, 94, 166, 0.15)",
+          textHighlight: "#D0A21588",
         },
         darkMode: {
-          light: "#0f0d15",           // Even darker purple
-          lightgray: "#1f1a2e",       // Dark purple
-          gray: "#5c5c79",            // Darker muted purple
-          darkgray: "#e8d5b7",        // Warm beige
-          dark: "#ffd4a3",            // Peachy orange
-          secondary: "#ff8552",       // Sunset orange
-          tertiary: "#ffb380",        // Light orange
-          highlight: "rgba(255, 133, 82, 0.15)",
-          textHighlight: "#ff855288",
+          light: "#100F0F",           // Black
+          lightgray: "#1C1B1A",       // 950
+          gray: "#878580",            // 500
+          darkgray: "#CECDC3",        // 200
+          dark: "#FFFCF0",            // Paper
+          secondary: "#4385BE",       // Blue (adjusted for dark)
+          tertiary: "#3AA99F",        // Cyan (adjusted for dark)
+          highlight: "rgba(67, 133, 190, 0.15)",
+          textHighlight: "#D0A21588",
         },
       },
     },
@@ -93,5 +92,4 @@ const config: QuartzConfig = {
     ],
   },
 }
-
 export default config
