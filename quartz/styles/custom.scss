@@ -1,3 +1,36 @@
 @use "./base.scss";
 
+// mononoki font face definitions
+@font-face {
+  font-family: "mononoki";
+  src: url("/static/fonts/mononoki-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "mononoki";
+  src: url("/static/fonts/mononoki-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "mononoki";
+  src: url("/static/fonts/mononoki-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "mononoki";
+  src: url("/static/fonts/mononoki-BoldItalic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
 // put your custom CSS here!

@@ -19,35 +19,35 @@ const config: QuartzConfig = {
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
-      fontOrigin: "googleFonts",
+      fontOrigin: "local",
       cdnCaching: true,
       typography: {
-        header: "Geist Mono",
-        body: "Geist Mono",
-        code: "Geist Mono",
+        header: "mononoki",
+        body: "mononoki",
+        code: "mononoki",
       },
       colors: {
         lightMode: {
-          light: "#FFFCF0",           // bg: paper
-          lightgray: "#E6E4D9",       // ui: base-100
-          gray: "#B7B5AC",            // tx-3: base-300
-          darkgray: "#6F6E69",        // tx-2: base-600
-          dark: "#100F0F",            // tx: black
-          secondary: "#205EA6",       // bl: blue-600
-          tertiary: "#24837B",        // cy: cyan-600
-          highlight: "rgba(32, 94, 166, 0.15)",
-          textHighlight: "#AD830188", // ye: yellow-600 with transparency
+          light: "#fdf6e3",           // bg: solarized base3
+          lightgray: "#eee8d5",       // bg-2: solarized base2
+          gray: "#93a1a1",            // ui-3: solarized base1
+          darkgray: "#657b83",        // tx-2: solarized base00
+          dark: "#586e75",            // tx: solarized base01
+          secondary: "#268bd2",       // solarized blue
+          tertiary: "#2aa198",        // solarized cyan
+          highlight: "rgba(38, 139, 210, 0.15)",
+          textHighlight: "#b5890088", // solarized yellow with transparency
         },
         darkMode: {
           light: "#100F0F",           // bg: black
-          lightgray: "#282726",       // ui: base-900
-          gray: "#575653",            // tx-3: base-700
+          lightgray: "#282726",       // bg-2: base-900
+          gray: "#575653",            // ui-3: base-700
           darkgray: "#878580",        // tx-2: base-500
           dark: "#CECDC3",            // tx: base-200
-          secondary: "#4385BE",       // bl: blue-400
-          tertiary: "#3AA99F",        // cy: cyan-400
+          secondary: "#4385BE",       // blue-400
+          tertiary: "#3AA99F",        // cyan-400
           highlight: "rgba(67, 133, 190, 0.15)",
-          textHighlight: "#D0A21588", // ye: yellow-400 with transparency
+          textHighlight: "#D0A21588", // yellow-400 with transparency
         },
       },
     },
@@ -60,7 +60,7 @@ const config: QuartzConfig = {
       }),
       Plugin.SyntaxHighlighting({
         theme: {
-          light: "github-light",
+          light: "solarized-light",
           dark: "github-dark",
         },
         keepBackground: false,
@@ -88,7 +88,7 @@ const config: QuartzConfig = {
       Plugin.Favicon(),
       Plugin.NotFoundPage(),
       // Comment out CustomOgImages to speed up build time
-      Plugin.CustomOgImages(),
+      // Plugin.CustomOgImages(),
     ],
   },
 }
