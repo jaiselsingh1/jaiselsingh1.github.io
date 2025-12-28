@@ -19,6 +19,8 @@ This is where I write about things I'm figuring out. Sometimes it's technical (w
 
 **[[research/index|Research]]** — The slightly less messy stuff. Paper notes, math I'm working through, ideas I'm testing.
 
+**[[Rêveries/index|Rêveries]]** — The wandering stuff. Thoughts that don't fit anywhere else.
+
 
 ## Find me
 
