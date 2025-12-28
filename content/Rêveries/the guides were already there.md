@@ -1,6 +1,6 @@
 ---
 title: The Guides Were Already There
-date: 2024-12-27
+date: 2025-12-27
 tags:
   - essay
   - philosophy
