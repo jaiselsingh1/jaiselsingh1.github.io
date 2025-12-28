@@ -15,11 +15,11 @@ Previously, I spent time building rocket engines at Penn State. Worked on propul
 
 This is where I write about things I'm figuring out. Sometimes it's technical (why is my PPO agent doing *that*?), sometimes it's just interesting problems I've run into.
 
-**[[journal/index|Journal]]** — The messy stuff. Learning notes, random observations, things I tried that didn't work.
+**[[journal/index|Journal]]**: The messy stuff. Learning notes, random observations, things I tried that didn't work.
 
-**[[research/index|Research]]** — The slightly less messy stuff. Paper notes, math I'm working through, ideas I'm testing.
+**[[research/index|Research]]**: The slightly less messy stuff. Paper notes, math I'm working through, ideas I'm testing.
 
-**[[Rêveries/index|Rêveries]]** — The wandering stuff. Thoughts that don't fit anywhere else.
+**[[Rêveries/index|Rêveries]]**: The wandering stuff. Thoughts that don't fit anywhere else.
 
 
 ## Find me

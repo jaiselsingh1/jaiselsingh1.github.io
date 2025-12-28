@@ -7,7 +7,7 @@ tags:
 description: On stuckness, beginner's mind, and why readiness isn't chosen.
 ---
 
-There's a story we tell about being lost. You wander, and then—a guide appears. An angel. A stranger with the right words. The universe provides.
+There's a story we tell about being lost. You wander, and then a guide appears. An angel. A stranger with the right words. The universe provides.
 
 I think the causation runs backward.
 
@@ -25,9 +25,9 @@ I was defended against a truth I didn't know I was defending against.
 
 Pirsig calls this *stuckness*, and he thinks it's a gift.
 
-When your usual strategies fail—when you've tried everything and nothing works—you enter a state where seeing becomes possible. The expert handles every familiar problem. The stuck person, sitting with not-knowing, learns to handle the unfamiliar.
+When your usual strategies fail (when you've tried everything and nothing works), you enter a state where seeing becomes possible. The expert handles every familiar problem. The stuck person, sitting with not-knowing, learns to handle the unfamiliar.
 
-What he's describing is beginner's mind in different clothes. *Shoshin*—approaching something without the weight of what you already know. Not ignorance. Openness.
+What he's describing is beginner's mind in different clothes. *Shoshin*: approaching something without the weight of what you already know. Not ignorance. Openness.
 
 Expertise closes this aperture. *I know what this is.*
 
@@ -69,7 +69,7 @@ That last one is the door.
 
 ---
 
-Maybe the universe sends guides. But not when we ask—when we're ready. And readiness isn't chosen. It's what remains when choosing fails.
+Maybe the universe sends guides. But not when we ask, when we're ready. And readiness isn't chosen. It's what remains when choosing fails.
 
 The guides were already there.
 
