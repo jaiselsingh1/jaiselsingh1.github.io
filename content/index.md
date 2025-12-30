@@ -21,10 +21,12 @@ This is where I write about things I'm figuring out. Sometimes it's technical (w
 
 **[[Rêveries/index|Rêveries]]**: The wandering stuff. Thoughts that don't fit anywhere else.
 
+**[[Principles/index|Principles]]**: These change. If you notice contradictions, that means I learned something.
+
 
 ## Find me
 
-[Twitter](https://x.com/jaiselsingh) • [GitHub](https://github.com/jaiselsingh1) • singhjaisel01@gmail.com
+[Twitter](https://x.com/jaiselsingh) • [GitHub](https://github.com/jaiselsingh1) • singhjaisel01@gmail.com • [Substack](https://substack.com/@jaiselsingh)
 
 ---
 
