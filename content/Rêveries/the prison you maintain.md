@@ -37,7 +37,7 @@ But their test isn't about eliminating fear. Paul's hand is in a box that feels 
 
 Fear doesn't dissolve. You move anyway.
 
-The alternative—waiting for confidence, for readiness, for the fear to lift—is just prescience by another name. Trying to see the future clearly enough to step safely. But the future never clarifies. And meanwhile you're still standing in the chariot.
+The alternative, waiting for confidence, for readiness, for the fear to lift—is just prescience by another name. Trying to see the future clearly enough to step safely. But the future never clarifies. And meanwhile you're still standing in the chariot.
 
 ---
 
@@ -55,7 +55,7 @@ Paul sees this too late. His son sees it three thousand years too late.
 
 **"The mystery of life isn't a problem to solve, but a reality to experience."**
 
-Leto II says this—the God Emperor who surrendered his humanity for a vision spanning millennia. Who can no longer touch, taste, love as humans do.
+Leto II says this; the God Emperor who surrendered his humanity for a vision spanning millennia. Who can no longer touch, taste, love as humans do.
 
 He's describing what he lost.
 
@@ -65,7 +65,7 @@ Krishna saw it from the beginning.
 
 *You have the right to work, but never to the fruit of work. You should never engage in action for the sake of reward, nor should you long for inaction.*
 
-The Gita doesn't say outcomes don't matter. It says your bondage to them is the chain. The obsessive calculation—will this work? will I be seen? is this worth it?—that's the chariot you never step out of.
+The Gita doesn't say outcomes don't matter. It says your bondage to them is the chain. The obsessive calculation; will this work? will I be seen? is this worth it? that's the chariot you never step out of.
 
 Action performed without attachment. Not without care. Without clinging.
 
