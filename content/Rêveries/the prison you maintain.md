@@ -7,6 +7,8 @@ tags:
 description: There's a self-awareness that sets you free. And then there's the kind that builds your walls higher.
 ---
 
+There's a self-awareness that sets you free. And then there's the kind that builds your walls higher.
+
 Paul Atreides can see the future, and we see it destroy him. Not the visions themselves, but the watching. He can only walk paths he's already seen. Every choice already made. Prescience becomes prison.
 
 Arjuna stands in his chariot between two armies, frozen. Not from cowardice but from seeing too clearly; the consequences branching outward, the uncles and teachers he'll have to kill, the kingdom of corpses he'll inherit even if he wins. He sees it all, and the seeing pins him in place.
