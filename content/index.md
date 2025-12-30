@@ -21,7 +21,7 @@ This is where I write about things I'm figuring out. Sometimes it's technical (w
 
 **[[Rêveries/index|Rêveries]]**: The wandering stuff. Thoughts that don't fit anywhere else.
 
-**[[Principles/index|Principles]]**: These change. If you notice contradictions, that means I learned something.
+<!-- **[[Principles/index|Principles]]**: These change. If you notice contradictions, that means I learned something. -->
 
 
 ## Find me
