@@ -3,31 +3,16 @@ title: Home
 ---
 # Jaisel Singh
 
-Welcome! 
+I build things to understand how they work.
 
-My name's Jaisel and welcome to my labspace on the web!
+Currently at Columbia, teaching robots to manipulate objects through reinforcement learning. Before this: rocket propulsion at SpaceX, thermal systems at Astranis, engine development at Penn State. The thread connecting it all is the same — I like taking systems apart, figuring out why they behave the way they do, and making them do something useful.
 
-I am currently at Columbia University working on making robots actually do useful manipulation tasks. Most of my time these days is spent debugging reward functions, reading papers at 2am, and asking "but why does it work?" about things that already work. 
-
-Previously, I spent time building rocket engines at Penn State. Worked on propulsion systems at SpaceX and thermal management at Astranis. Now I make robot arms push blocks around and somehow this is harder.
-
-## What's here
-
-This is where I write about things I'm figuring out. Sometimes it's technical (why is my PPO agent doing *that*?), sometimes it's just interesting problems I've run into.
-
-**[[journal/index|Journal]]**: The messy stuff. Learning notes, random observations, things I tried that didn't work.
-
-**[[research/index|Research]]**: The slightly less messy stuff. Paper notes, math I'm working through, ideas I'm testing.
-
-**[[Rêveries/index|Rêveries]]**: The wandering stuff. Thoughts that don't fit anywhere else.
-
-<!-- **[[Principles/index|Principles]]**: These change. If you notice contradictions, that means I learned something. -->
-
-
-## Find me
-
-[Twitter](https://x.com/jaiselsingh) • [GitHub](https://github.com/jaiselsingh1) • singhjaisel01@gmail.com • [Substack](https://substack.com/@jaiselsingh)
+When I'm not in the lab, I'm usually running, hunting for good coffee, or reading something that has nothing to do with robotics.
 
 ---
 
-*This site is built with Quartz. Everything here is a work in progress, including this sentence.*
+**[[notes/index|Notes]]** — What I'm learning and thinking about.
+
+---
+
+[Twitter](https://x.com/jaiselsingh) • [GitHub](https://github.com/jaiselsingh1) • [Substack](https://substack.com/@jaiselsingh) • singhjaisel01@gmail.com

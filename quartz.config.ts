@@ -28,26 +28,26 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: "#fdf6e3",           // bg: solarized base3
-          lightgray: "#eee8d5",       // bg-2: solarized base2
-          gray: "#93a1a1",            // ui-3: solarized base1
-          darkgray: "#657b83",        // tx-2: solarized base00
-          dark: "#586e75",            // tx: solarized base01
-          secondary: "#268bd2",       // solarized blue
-          tertiary: "#2aa198",        // solarized cyan
-          highlight: "rgba(38, 139, 210, 0.15)",
-          textHighlight: "#b5890088", // solarized yellow with transparency
+          light: "#FAFAFA",           // bg: near-white
+          lightgray: "#F0F0F0",       // bg-2: light gray
+          gray: "#B0B0B0",            // ui-3: medium gray
+          darkgray: "#5C5C5C",        // tx-2: dark gray
+          dark: "#1A1A1A",            // tx: near-black
+          secondary: "#E63946",       // accent: refined red
+          tertiary: "#457B9D",        // secondary accent: muted blue
+          highlight: "rgba(230, 57, 70, 0.08)",
+          textHighlight: "#E6394622",
         },
         darkMode: {
-          light: "#100F0F",           // bg: black
-          lightgray: "#282726",       // bg-2: base-900
-          gray: "#575653",            // ui-3: base-700
-          darkgray: "#878580",        // tx-2: base-500
-          dark: "#CECDC3",            // tx: base-200
-          secondary: "#4385BE",       // blue-400
-          tertiary: "#3AA99F",        // cyan-400
-          highlight: "rgba(67, 133, 190, 0.15)",
-          textHighlight: "#D0A21588", // yellow-400 with transparency
+          light: "#0D0D0D",           // bg: deep black
+          lightgray: "#1A1A1A",       // bg-2: slightly lighter
+          gray: "#404040",            // ui-3: medium gray
+          darkgray: "#A0A0A0",        // tx-2: light gray
+          dark: "#F0F0F0",            // tx: near-white
+          secondary: "#E63946",       // accent: same red
+          tertiary: "#A8DADC",        // secondary: soft cyan
+          highlight: "rgba(230, 57, 70, 0.12)",
+          textHighlight: "#E6394633",
         },
       },
     },

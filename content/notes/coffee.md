@@ -1,0 +1,60 @@
+---
+title: Coffee
+description: A running log of coffee shops and what I've learned about good coffee.
+---
+# Coffee
+
+I take coffee seriously — not in a pretentious way, but in the way you take anything seriously when you're trying to understand what makes the difference between good and great. This is a running log of places I've tried.
+
+---
+
+## New York
+
+**Devocion** — Good pour over (red barrel) and cold brew.
+
+**Do Not Feed Alligators** — Excellent cold brew and pour over selection. Wish they allowed laptops.
+
+**Black Fox** — Solid cold brew.
+
+**La Cabra** — Good pour over. Cold brew was fine but didn't stand out.
+
+**Cafe Integral** — Got the El Porvenir (Nicaragua) — pineapple, cacao, butterscotch. Really loved it. Has seating but bring your devices charged.
+
+**Partners Coffee** — Pour over was quite good.
+
+**Little Collins** — Great breakfast and coffee. Good spot to eat, no real seating for working.
+
+**Blue Bottle** — Decent pour over. Single origin cold brew is very good but pricey.
+
+**Sote** — Solid cold brew with decent workspace.
+
+**Irving Farm** — Very good cold brew. No pour overs, has seating.
+
+**Coffee Project** — Pour over (Banko Gotiti Washed) was good. Didn't love the Chelsea location's cold brew.
+
+**Solid State** — Decent pour over, good seating but no wifi.
+
+---
+
+## Seattle
+
+**Victrola Coffee** — Probably my favorite cold brew.
+
+**Homage Coffee** — Very good pour over.
+
+**Artemis Coffee** — Peaberry pour over was excellent (Uklili Peaberry, Black and White roasters).
+
+---
+
+## Still to Try
+
+- Voyager Espresso
+- Hi-Collar (also has omurice)
+- %Arabica
+- Cafe Leon Dore
+- Milstead and Co (Seattle)
+- Olympia Coffee (Seattle)
+
+---
+
+*This list grows as I explore.*
