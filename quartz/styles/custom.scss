@@ -34,3 +34,340 @@
 }
 
 // put your custom CSS here!
+
+// Solarized color variables for reference
+:root {
+  --solarized-base03: #002b36;
+  --solarized-base02: #073642;
+  --solarized-base01: #586e75;
+  --solarized-base00: #657b83;
+  --solarized-base0: #839496;
+  --solarized-base1: #93a1a1;
+  --solarized-base2: #eee8d5;
+  --solarized-base3: #fdf6e3;
+  --solarized-yellow: #b58900;
+  --solarized-orange: #cb4b16;
+  --solarized-red: #dc322f;
+  --solarized-magenta: #d33682;
+  --solarized-violet: #6c71c4;
+  --solarized-blue: #268bd2;
+  --solarized-cyan: #2aa198;
+  --solarized-green: #859900;
+}
+
+// Maker/Scientist/Engineer Aesthetic
+// Blueprint-style subtle grid background
+body {
+  background-image:
+    linear-gradient(rgba(38, 139, 210, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(38, 139, 210, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-attachment: fixed;
+}
+
+// Technical corner brackets for main content
+article {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--secondary);
+    opacity: 0.3;
+  }
+
+  &::before {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  &::after {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+  }
+}
+
+// Engineering-style headers with technical underline
+h1, h2, h3 {
+  position: relative;
+  padding-bottom: 0.5em;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+      to right,
+      var(--secondary) 0%,
+      var(--secondary) 70%,
+      transparent 70%,
+      transparent 75%,
+      var(--secondary) 75%,
+      var(--secondary) 80%,
+      transparent 80%
+    );
+    opacity: 0.5;
+  }
+}
+
+h1::after {
+  height: 3px;
+  opacity: 0.7;
+}
+
+// Technical code block styling
+pre {
+  border-left: 3px solid var(--secondary);
+  border-radius: 4px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+
+  &::before {
+    content: '> CONSOLE';
+    display: block;
+    font-size: 0.7em;
+    color: var(--secondary);
+    opacity: 0.6;
+    margin-bottom: 0.5em;
+    letter-spacing: 2px;
+    font-weight: bold;
+  }
+}
+
+// Technical link styling
+a {
+  position: relative;
+  text-decoration: none;
+  border-bottom: 1px dashed var(--secondary);
+  transition: all 0.2s ease;
+
+  &::before {
+    content: '[';
+    color: var(--tertiary);
+    opacity: 0;
+    margin-right: 2px;
+    transition: opacity 0.2s ease;
+  }
+
+  &::after {
+    content: ']';
+    color: var(--tertiary);
+    opacity: 0;
+    margin-left: 2px;
+    transition: opacity 0.2s ease;
+  }
+
+  &:hover {
+    border-bottom-style: solid;
+
+    &::before,
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+// Blueprint-style blockquotes
+blockquote {
+  border-left: 4px double var(--secondary);
+  background: rgba(38, 139, 210, 0.03);
+  padding: 1em 1.5em;
+  margin: 1.5em 0;
+  position: relative;
+
+  &::before {
+    content: '📐';
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    opacity: 0.3;
+    font-size: 1.5em;
+  }
+}
+
+// Technical table styling
+table {
+  border: 2px solid var(--gray);
+  border-collapse: separate;
+  border-spacing: 0;
+
+  th {
+    background: var(--lightgray);
+    border-bottom: 3px double var(--secondary);
+    padding: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85em;
+  }
+
+  td {
+    border-bottom: 1px solid var(--gray);
+    padding: 0.75em;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+// Technical callout boxes
+.callout {
+  border-left: 4px solid var(--secondary);
+  background: rgba(38, 139, 210, 0.05);
+  position: relative;
+
+  &::before {
+    content: '⚠';
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--light);
+    padding: 2px 4px;
+    font-size: 1.2em;
+  }
+
+  &[data-callout="note"]::before {
+    content: '📝';
+  }
+
+  &[data-callout="tip"]::before {
+    content: '💡';
+  }
+
+  &[data-callout="warning"]::before {
+    content: '⚠️';
+  }
+
+  &[data-callout="experiment"]::before {
+    content: '🔬';
+  }
+}
+
+// Page title with technical styling
+.page-title {
+  position: relative;
+  display: inline-block;
+
+  &::before {
+    content: '◢';
+    color: var(--tertiary);
+    margin-right: 0.3em;
+    opacity: 0.6;
+  }
+
+  &::after {
+    content: '◣';
+    color: var(--tertiary);
+    margin-left: 0.3em;
+    opacity: 0.6;
+  }
+}
+
+// Technical sidebar styling
+.sidebar {
+  border: 1px solid var(--gray);
+  border-radius: 4px;
+  background: linear-gradient(
+    135deg,
+    var(--light) 0%,
+    var(--lightgray) 100%
+  );
+
+  &::before {
+    content: '/// INDEX';
+    display: block;
+    padding: 0.5em;
+    background: var(--secondary);
+    color: var(--light);
+    font-size: 0.75em;
+    letter-spacing: 2px;
+    font-weight: bold;
+    border-radius: 3px 3px 0 0;
+  }
+}
+
+// Tag styling with technical badges
+.tag {
+  display: inline-block;
+  padding: 0.25em 0.75em;
+  background: transparent;
+  border: 1px solid var(--secondary);
+  border-radius: 3px;
+  font-size: 0.85em;
+  font-family: 'mononoki', monospace;
+  margin: 0.25em;
+  transition: all 0.2s ease;
+
+  &::before {
+    content: '#';
+    color: var(--tertiary);
+    margin-right: 0.25em;
+  }
+
+  &:hover {
+    background: var(--secondary);
+    color: var(--light);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(38, 139, 210, 0.3);
+  }
+}
+
+// Footer with technical styling
+footer {
+  border-top: 2px solid var(--gray);
+  margin-top: 3em;
+  padding-top: 1em;
+  position: relative;
+
+  &::before {
+    content: '---[ END OF DOCUMENT ]---';
+    position: absolute;
+    top: -0.6em;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--light);
+    padding: 0 1em;
+    font-size: 0.7em;
+    color: var(--darkgray);
+    letter-spacing: 2px;
+  }
+}
+
+// Search bar with technical styling
+.search-bar {
+  border: 2px solid var(--gray);
+  border-radius: 4px;
+  background: var(--light);
+
+  &:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(38, 139, 210, 0.1);
+  }
+
+  &::placeholder {
+    opacity: 0.5;
+  }
+}
+
+// Dark mode adjustments
+[data-theme="dark"] {
+  body {
+    background-image:
+      linear-gradient(rgba(42, 161, 152, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(42, 161, 152, 0.05) 1px, transparent 1px);
+  }
+
+  pre {
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3);
+  }
+}

@@ -28,26 +28,26 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: "#eff1f5",           // bg: Catppuccin Latte Base
-          lightgray: "#e6e9ef",       // bg-2: Catppuccin Latte Mantle
-          gray: "#ccd0da",            // ui-3: Catppuccin Latte Surface0
-          darkgray: "#8c8fa1",        // tx-2: Catppuccin Latte Overlay1
-          dark: "#4c4f69",            // tx: Catppuccin Latte Text
-          secondary: "#d20f39",       // accent: Catppuccin Latte Red
-          tertiary: "#1e66f5",        // secondary accent: Catppuccin Latte Blue
-          highlight: "rgba(210, 15, 57, 0.08)",
-          textHighlight: "#d20f3922",
+          light: "#fdf6e3",           // bg: Solarized Light base3
+          lightgray: "#eee8d5",       // bg-2: Solarized Light base2
+          gray: "#93a1a1",            // ui-3: Solarized Light base1
+          darkgray: "#657b83",        // tx-2: Solarized Light base00
+          dark: "#073642",            // tx: Solarized Light base02
+          secondary: "#268bd2",       // accent: Solarized Blue
+          tertiary: "#2aa198",        // secondary accent: Solarized Cyan
+          highlight: "rgba(38, 139, 210, 0.10)",
+          textHighlight: "#268bd222",
         },
         darkMode: {
-          light: "#1e1e2e",           // bg: Catppuccin Mocha Base
-          lightgray: "#181825",       // bg-2: Catppuccin Mocha Mantle
-          gray: "#313244",            // ui-3: Catppuccin Mocha Surface0
-          darkgray: "#9399b2",        // tx-2: Catppuccin Mocha Overlay1
-          dark: "#cdd6f4",            // tx: Catppuccin Mocha Text
-          secondary: "#f38ba8",       // accent: Catppuccin Mocha Red
-          tertiary: "#89b4fa",        // secondary: Catppuccin Mocha Blue
-          highlight: "rgba(243, 139, 168, 0.12)",
-          textHighlight: "#f38ba833",
+          light: "#002b36",           // bg: Solarized Dark base03
+          lightgray: "#073642",       // bg-2: Solarized Dark base02
+          gray: "#586e75",            // ui-3: Solarized Dark base01
+          darkgray: "#839496",        // tx-2: Solarized Dark base0
+          dark: "#93a1a1",            // tx: Solarized Dark base1
+          secondary: "#268bd2",       // accent: Solarized Blue
+          tertiary: "#2aa198",        // secondary: Solarized Cyan
+          highlight: "rgba(38, 139, 210, 0.15)",
+          textHighlight: "#268bd233",
         },
       },
     },
@@ -60,8 +60,8 @@ const config: QuartzConfig = {
       }),
       Plugin.SyntaxHighlighting({
         theme: {
-          light: "catppuccin-latte",
-          dark: "catppuccin-mocha",
+          light: "solarized-light",
+          dark: "solarized-dark",
         },
         keepBackground: false,
       }),
