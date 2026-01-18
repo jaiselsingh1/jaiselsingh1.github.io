@@ -4,7 +4,8 @@ description: A running log of coffee shops and what I've learned about good coff
 ---
 # Coffee
 
-I take coffee seriously — not in a pretentious way, but in the way you take anything seriously when you're trying to understand what makes the difference between good and great. This is a running log of places I've tried.
+I love coffee; A good pour over with a book/laptop to read/write up some experiments is one of my favouite ways sto spend my free time; 
+This is a running log of places I've tried.
 
 [View all locations on a map](https://maps.app.goo.gl/rpbwcKbSH12KbDFr6)
 
