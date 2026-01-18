@@ -6,6 +6,8 @@ description: A running log of coffee shops and what I've learned about good coff
 
 I take coffee seriously — not in a pretentious way, but in the way you take anything seriously when you're trying to understand what makes the difference between good and great. This is a running log of places I've tried.
 
+[View all locations on a map](https://maps.app.goo.gl/rpbwcKbSH12KbDFr6)
+
 ---
 
 ## New York
@@ -43,17 +45,6 @@ I take coffee seriously — not in a pretentious way, but in the way you take an
 **Homage Coffee** — Very good pour over.
 
 **Artemis Coffee** — Peaberry pour over was excellent (Uklili Peaberry, Black and White roasters).
-
----
-
-## Still to Try
-
-- Voyager Espresso
-- Hi-Collar (also has omurice)
-- %Arabica
-- Cafe Leon Dore
-- Milstead and Co (Seattle)
-- Olympia Coffee (Seattle)
 
 ---
 

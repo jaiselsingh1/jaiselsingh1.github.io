@@ -3,11 +3,19 @@ title: Home
 ---
 # Jaisel Singh
 
-I build things to understand how they work.
+Build to understand. Understand to build.
 
-Currently at Columbia, teaching robots to manipulate objects through reinforcement learning. Before this: rocket propulsion at SpaceX, thermal systems at Astranis, engine development at Penn State. The thread connecting it all is the same — I like taking systems apart, figuring out why they behave the way they do, and making them do something useful.
+Things I keep returning to:
+- The obstacle to discovery is the illusion of knowledge, not ignorance
+- Ask the dumb question. The territory others won't touch is where the interesting stuff lives
+- Beauty is a heuristic—if it's ugly, something's probably wrong
+- Slack isn't waste. It's where the ideas come from
+- You don't need permission
+- Stay on-policy: actions have outcomes, intentions don't
 
-When I'm not in the lab, I'm usually running, hunting for good coffee, or reading something that has nothing to do with robotics.
+Currently: robot perception and learning at Columbia—getting machines to see, understand, and act. Before: propulsion at SpaceX, thermal systems at Astranis, engines at Penn State.
+
+Outside the lab: long runs, unreasonable coffee standards, whatever book has nothing to do with robots.
 
 ---
 

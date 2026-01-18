@@ -35,32 +35,33 @@
 
 // put your custom CSS here!
 
-// Solarized color variables for reference
+// Flexoki color variables for reference
 :root {
-  --solarized-base03: #002b36;
-  --solarized-base02: #073642;
-  --solarized-base01: #586e75;
-  --solarized-base00: #657b83;
-  --solarized-base0: #839496;
-  --solarized-base1: #93a1a1;
-  --solarized-base2: #eee8d5;
-  --solarized-base3: #fdf6e3;
-  --solarized-yellow: #b58900;
-  --solarized-orange: #cb4b16;
-  --solarized-red: #dc322f;
-  --solarized-magenta: #d33682;
-  --solarized-violet: #6c71c4;
-  --solarized-blue: #268bd2;
-  --solarized-cyan: #2aa198;
-  --solarized-green: #859900;
+  --flexoki-paper: #FFFCF0;
+  --flexoki-base-50: #F2F0E5;
+  --flexoki-base-200: #CECDC3;
+  --flexoki-base-400: #B7B5AC;
+  --flexoki-base-600: #6F6E69;
+  --flexoki-base-700: #575653;
+  --flexoki-base-900: #282726;
+  --flexoki-base-950: #1C1B1A;
+  --flexoki-black: #100F0F;
+  --flexoki-red: #AF3029;
+  --flexoki-orange: #BC5215;
+  --flexoki-yellow: #AD8301;
+  --flexoki-green: #66800B;
+  --flexoki-cyan: #24837B;
+  --flexoki-blue: #205EA6;
+  --flexoki-purple: #5E409D;
+  --flexoki-magenta: #A02F6F;
 }
 
 // Maker/Scientist/Engineer Aesthetic
 // Blueprint-style subtle grid background
 body {
   background-image:
-    linear-gradient(rgba(38, 139, 210, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(38, 139, 210, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(32, 94, 166, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(32, 94, 166, 0.03) 1px, transparent 1px);
   background-size: 20px 20px;
   background-attachment: fixed;
 }
@@ -179,7 +180,7 @@ a {
 // Blueprint-style blockquotes
 blockquote {
   border-left: 4px double var(--secondary);
-  background: rgba(38, 139, 210, 0.03);
+  background: rgba(32, 94, 166, 0.03);
   padding: 1em 1.5em;
   margin: 1.5em 0;
   position: relative;
@@ -222,7 +223,7 @@ table {
 // Technical callout boxes
 .callout {
   border-left: 4px solid var(--secondary);
-  background: rgba(38, 139, 210, 0.05);
+  background: rgba(32, 94, 166, 0.05);
   position: relative;
 
   &::before {
@@ -318,7 +319,7 @@ table {
     background: var(--secondary);
     color: var(--light);
     transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(38, 139, 210, 0.3);
+    box-shadow: 0 2px 8px rgba(32, 94, 166, 0.3);
   }
 }
 
@@ -351,7 +352,7 @@ footer {
 
   &:focus {
     border-color: var(--secondary);
-    box-shadow: 0 0 0 3px rgba(38, 139, 210, 0.1);
+    box-shadow: 0 0 0 3px rgba(32, 94, 166, 0.1);
   }
 
   &::placeholder {
@@ -363,8 +364,8 @@ footer {
 [data-theme="dark"] {
   body {
     background-image:
-      linear-gradient(rgba(42, 161, 152, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(42, 161, 152, 0.05) 1px, transparent 1px);
+      linear-gradient(rgba(58, 169, 159, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(58, 169, 159, 0.05) 1px, transparent 1px);
   }
 
   pre {

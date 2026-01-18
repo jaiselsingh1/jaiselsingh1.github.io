@@ -28,26 +28,26 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: "#fdf6e3",           // bg: Solarized Light base3
-          lightgray: "#eee8d5",       // bg-2: Solarized Light base2
-          gray: "#93a1a1",            // ui-3: Solarized Light base1
-          darkgray: "#657b83",        // tx-2: Solarized Light base00
-          dark: "#073642",            // tx: Solarized Light base02
-          secondary: "#268bd2",       // accent: Solarized Blue
-          tertiary: "#2aa198",        // secondary accent: Solarized Cyan
-          highlight: "rgba(38, 139, 210, 0.10)",
-          textHighlight: "#268bd222",
+          light: "#FFFCF0",           // bg: Flexoki Paper
+          lightgray: "#F2F0E5",       // bg-2: Flexoki Base-50
+          gray: "#B7B5AC",            // ui-3: Flexoki Base-400
+          darkgray: "#6F6E69",        // tx-2: Flexoki Base-600
+          dark: "#1C1B1A",            // tx: Flexoki Base-950
+          secondary: "#205EA6",       // accent: Flexoki Blue-600
+          tertiary: "#24837B",        // secondary accent: Flexoki Cyan-600
+          highlight: "rgba(32, 94, 166, 0.10)",
+          textHighlight: "#205EA622",
         },
         darkMode: {
-          light: "#002b36",           // bg: Solarized Dark base03
-          lightgray: "#073642",       // bg-2: Solarized Dark base02
-          gray: "#586e75",            // ui-3: Solarized Dark base01
-          darkgray: "#839496",        // tx-2: Solarized Dark base0
-          dark: "#93a1a1",            // tx: Solarized Dark base1
-          secondary: "#268bd2",       // accent: Solarized Blue
-          tertiary: "#2aa198",        // secondary: Solarized Cyan
-          highlight: "rgba(38, 139, 210, 0.15)",
-          textHighlight: "#268bd233",
+          light: "#100F0F",           // bg: Flexoki Black
+          lightgray: "#1C1B1A",       // bg-2: Flexoki Base-950
+          gray: "#575653",            // ui-3: Flexoki Base-700
+          darkgray: "#B7B5AC",        // tx-2: Flexoki Base-400
+          dark: "#CECDC3",            // tx: Flexoki Base-200
+          secondary: "#4385BE",       // accent: Flexoki Blue-400
+          tertiary: "#3AA99F",        // secondary: Flexoki Cyan-400
+          highlight: "rgba(67, 133, 190, 0.15)",
+          textHighlight: "#4385BE33",
         },
       },
     },
@@ -60,8 +60,8 @@ const config: QuartzConfig = {
       }),
       Plugin.SyntaxHighlighting({
         theme: {
-          light: "solarized-light",
-          dark: "solarized-dark",
+          light: "github-light",
+          dark: "github-dark",
         },
         keepBackground: false,
       }),
