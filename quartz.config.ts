@@ -22,9 +22,9 @@ const config: QuartzConfig = {
       fontOrigin: "local",
       cdnCaching: true,
       typography: {
-        header: "mononoki",
-        body: "mononoki",
-        code: "mononoki",
+        header: "Mononoki Nerd Font Propo",
+        body: "Mononoki Nerd Font Propo",
+        code: "Mononoki Nerd Font Propo",
       },
       colors: {
         lightMode: {

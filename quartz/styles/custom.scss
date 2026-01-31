@@ -1,218 +1,152 @@
 @use "./base.scss";
 
-// mononoki font face definitions
+// Mononoki Nerd Font Propo - font face definitions
 @font-face {
-  font-family: "mononoki";
-  src: url("static/fonts/mononoki-Regular.woff2") format("woff2");
+  font-family: "Mononoki Nerd Font Propo";
+  src: url("static/fonts/MononokiNerdFontPropo-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "mononoki";
-  src: url("static/fonts/mononoki-Bold.woff2") format("woff2");
+  font-family: "Mononoki Nerd Font Propo";
+  src: url("static/fonts/MononokiNerdFontPropo-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "mononoki";
-  src: url("static/fonts/mononoki-Italic.woff2") format("woff2");
+  font-family: "Mononoki Nerd Font Propo";
+  src: url("static/fonts/MononokiNerdFontPropo-Italic.woff2") format("woff2");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "mononoki";
-  src: url("static/fonts/mononoki-BoldItalic.woff2") format("woff2");
+  font-family: "Mononoki Nerd Font Propo";
+  src: url("static/fonts/MononokiNerdFontPropo-BoldItalic.woff2") format("woff2");
   font-weight: 700;
   font-style: italic;
   font-display: swap;
 }
 
-// put your custom CSS here!
+// ============================================
+// Refined Aesthetic - Quiet Sophistication
+// ============================================
 
-// Flexoki color variables for reference
-:root {
-  --flexoki-paper: #FFFCF0;
-  --flexoki-base-50: #F2F0E5;
-  --flexoki-base-200: #CECDC3;
-  --flexoki-base-400: #B7B5AC;
-  --flexoki-base-600: #6F6E69;
-  --flexoki-base-700: #575653;
-  --flexoki-base-900: #282726;
-  --flexoki-base-950: #1C1B1A;
-  --flexoki-black: #100F0F;
-  --flexoki-red: #AF3029;
-  --flexoki-orange: #BC5215;
-  --flexoki-yellow: #AD8301;
-  --flexoki-green: #66800B;
-  --flexoki-cyan: #24837B;
-  --flexoki-blue: #205EA6;
-  --flexoki-purple: #5E409D;
-  --flexoki-magenta: #A02F6F;
-}
-
-// Maker/Scientist/Engineer Aesthetic
-// Blueprint-style subtle grid background
+// Base body - clean, no grid noise
 body {
-  background-image:
-    linear-gradient(rgba(32, 94, 166, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(32, 94, 166, 0.03) 1px, transparent 1px);
-  background-size: 20px 20px;
-  background-attachment: fixed;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
 }
 
-// Technical corner brackets for main content
+// Generous, balanced content spacing
 article {
-  position: relative;
+  max-width: 72ch;
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--secondary);
-    opacity: 0.3;
+  p {
+    margin-bottom: 1.5em;
   }
 
-  &::before {
-    top: 0;
-    left: 0;
-    border-right: none;
-    border-bottom: none;
-  }
-
-  &::after {
-    bottom: 0;
-    right: 0;
-    border-left: none;
-    border-top: none;
+  > *:first-child {
+    margin-top: 0;
   }
 }
 
-// Engineering-style headers with technical underline
-h1, h2, h3 {
-  position: relative;
-  padding-bottom: 0.5em;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(
-      to right,
-      var(--secondary) 0%,
-      var(--secondary) 70%,
-      transparent 70%,
-      transparent 75%,
-      var(--secondary) 75%,
-      var(--secondary) 80%,
-      transparent 80%
-    );
-    opacity: 0.5;
-  }
+// Clean typographic hierarchy
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.02em;
+  margin-top: 2.5em;
+  margin-bottom: 0.75em;
+  line-height: 1.3;
 }
 
-h1::after {
-  height: 3px;
-  opacity: 0.7;
+h1 {
+  font-size: 1.8em;
+  border-bottom: 2px solid var(--gray);
+  padding-bottom: 0.4em;
 }
 
-// Technical code block styling
-pre {
-  border-left: 3px solid var(--secondary);
-  border-radius: 4px;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-
-  &::before {
-    content: '> CONSOLE';
-    display: block;
-    font-size: 0.7em;
-    color: var(--secondary);
-    opacity: 0.6;
-    margin-bottom: 0.5em;
-    letter-spacing: 2px;
-    font-weight: bold;
-  }
+h2 {
+  font-size: 1.4em;
+  color: var(--secondary);
 }
 
-// Technical link styling
+h3 {
+  font-size: 1.15em;
+  color: var(--darkgray);
+}
+
+// Simple, elegant links
 a {
-  position: relative;
+  color: var(--secondary);
   text-decoration: none;
-  border-bottom: 1px dashed var(--secondary);
-  transition: all 0.2s ease;
-
-  &::before {
-    content: '[';
-    color: var(--tertiary);
-    opacity: 0;
-    margin-right: 2px;
-    transition: opacity 0.2s ease;
-  }
-
-  &::after {
-    content: ']';
-    color: var(--tertiary);
-    opacity: 0;
-    margin-left: 2px;
-    transition: opacity 0.2s ease;
-  }
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
 
   &:hover {
-    border-bottom-style: solid;
-
-    &::before,
-    &::after {
-      opacity: 1;
-    }
+    border-bottom-color: var(--secondary);
   }
 }
 
-// Blueprint-style blockquotes
+// Clean code blocks
+pre {
+  border-radius: 4px;
+  border: 1px solid var(--gray);
+  padding: 1.25em;
+  overflow-x: auto;
+
+  code {
+    font-size: 0.9em;
+  }
+}
+
+// Inline code
+code {
+  background: var(--lightgray);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+// Refined blockquotes
 blockquote {
-  border-left: 4px double var(--secondary);
-  background: rgba(32, 94, 166, 0.03);
-  padding: 1em 1.5em;
+  border-left: 3px solid var(--secondary);
+  padding: 0.75em 1.25em;
   margin: 1.5em 0;
-  position: relative;
+  color: var(--darkgray);
+  font-style: italic;
 
-  &::before {
-    content: '📐';
-    position: absolute;
-    top: 0.5em;
-    right: 0.5em;
-    opacity: 0.3;
-    font-size: 1.5em;
+  p:last-child {
+    margin-bottom: 0;
   }
 }
 
-// Technical table styling
+// Clean tables
 table {
-  border: 2px solid var(--gray);
-  border-collapse: separate;
-  border-spacing: 0;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  font-size: 0.95em;
+
+  th, td {
+    padding: 0.75em 1em;
+    text-align: left;
+    border-bottom: 1px solid var(--gray);
+  }
 
   th {
-    background: var(--lightgray);
-    border-bottom: 3px double var(--secondary);
-    padding: 0.75em;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.85em;
-  }
-
-  td {
-    border-bottom: 1px solid var(--gray);
-    padding: 0.75em;
+    font-weight: 700;
+    color: var(--dark);
+    border-bottom-width: 2px;
   }
 
   tr:last-child td {
@@ -220,155 +154,145 @@ table {
   }
 }
 
-// Technical callout boxes
+// Minimal callout styling
 .callout {
-  border-left: 4px solid var(--secondary);
-  background: rgba(32, 94, 166, 0.05);
-  position: relative;
-
-  &::before {
-    content: '⚠';
-    position: absolute;
-    left: -15px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--light);
-    padding: 2px 4px;
-    font-size: 1.2em;
-  }
-
-  &[data-callout="note"]::before {
-    content: '📝';
-  }
-
-  &[data-callout="tip"]::before {
-    content: '💡';
-  }
-
-  &[data-callout="warning"]::before {
-    content: '⚠️';
-  }
-
-  &[data-callout="experiment"]::before {
-    content: '🔬';
-  }
-}
-
-// Page title with technical styling
-.page-title {
-  position: relative;
-  display: inline-block;
-
-  &::before {
-    content: '◢';
-    color: var(--tertiary);
-    margin-right: 0.3em;
-    opacity: 0.6;
-  }
-
-  &::after {
-    content: '◣';
-    color: var(--tertiary);
-    margin-left: 0.3em;
-    opacity: 0.6;
-  }
-}
-
-// Technical sidebar styling
-.sidebar {
   border: 1px solid var(--gray);
+  border-left: 3px solid var(--secondary);
   border-radius: 4px;
-  background: linear-gradient(
-    135deg,
-    var(--light) 0%,
-    var(--lightgray) 100%
-  );
+  padding: 1em 1.25em;
+  margin: 1.5em 0;
+  background: var(--lightgray);
 
-  &::before {
-    content: '/// INDEX';
-    display: block;
-    padding: 0.5em;
-    background: var(--secondary);
-    color: var(--light);
-    font-size: 0.75em;
-    letter-spacing: 2px;
-    font-weight: bold;
-    border-radius: 3px 3px 0 0;
+  .callout-title {
+    font-weight: 700;
+    margin-bottom: 0.5em;
   }
 }
 
-// Tag styling with technical badges
+// Subtle tag styling
 .tag {
   display: inline-block;
-  padding: 0.25em 0.75em;
-  background: transparent;
-  border: 1px solid var(--secondary);
-  border-radius: 3px;
+  padding: 0.2em 0.6em;
   font-size: 0.85em;
-  font-family: 'mononoki', monospace;
-  margin: 0.25em;
-  transition: all 0.2s ease;
-
-  &::before {
-    content: '#';
-    color: var(--tertiary);
-    margin-right: 0.25em;
-  }
+  color: var(--secondary);
+  background: transparent;
+  border: 1px solid var(--gray);
+  border-radius: 3px;
+  margin: 0.2em;
+  transition: all 0.15s ease;
 
   &:hover {
-    background: var(--secondary);
-    color: var(--light);
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(32, 94, 166, 0.3);
+    border-color: var(--secondary);
+    background: var(--lightgray);
   }
 }
 
-// Footer with technical styling
+// Clean footer
 footer {
-  border-top: 2px solid var(--gray);
-  margin-top: 3em;
-  padding-top: 1em;
-  position: relative;
+  margin-top: 4em;
+  padding-top: 1.5em;
+  border-top: 1px solid var(--gray);
+  color: var(--darkgray);
+  font-size: 0.9em;
+}
 
-  &::before {
-    content: '---[ END OF DOCUMENT ]---';
-    position: absolute;
-    top: -0.6em;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--light);
-    padding: 0 1em;
-    font-size: 0.7em;
-    color: var(--darkgray);
-    letter-spacing: 2px;
+// Refined horizontal rule
+hr {
+  border: none;
+  height: 1px;
+  background: var(--gray);
+  margin: 2.5em 0;
+}
+
+// Lists with proper spacing
+ul, ol {
+  padding-left: 1.5em;
+  margin: 1em 0;
+
+  li {
+    margin: 0.5em 0;
+    line-height: 1.6;
+  }
+
+  li > ul,
+  li > ol {
+    margin: 0.25em 0;
   }
 }
 
-// Search bar with technical styling
-.search-bar {
-  border: 2px solid var(--gray);
+// Image styling
+img {
   border-radius: 4px;
-  background: var(--light);
+  max-width: 100%;
+  height: auto;
+}
+
+// Explorer/sidebar refinements
+.sidebar {
+  font-size: 0.9em;
+}
+
+// Search input
+#search-bar {
+  border: 1px solid var(--gray);
+  border-radius: 4px;
+  padding: 0.5em 0.75em;
+  transition: border-color 0.15s ease;
 
   &:focus {
     border-color: var(--secondary);
-    box-shadow: 0 0 0 3px rgba(32, 94, 166, 0.1);
-  }
-
-  &::placeholder {
-    opacity: 0.5;
+    outline: none;
   }
 }
 
-// Dark mode adjustments
-[data-theme="dark"] {
-  body {
-    background-image:
-      linear-gradient(rgba(58, 169, 159, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(58, 169, 159, 0.05) 1px, transparent 1px);
-  }
+// Graph styling refinements
+.graph {
+  border: 1px solid var(--gray);
+  border-radius: 4px;
+}
 
-  pre {
-    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3);
+// Backlinks section
+.backlinks {
+  margin-top: 3em;
+  padding-top: 1.5em;
+  border-top: 1px solid var(--gray);
+
+  h3 {
+    font-size: 1em;
+    color: var(--darkgray);
+    margin-top: 0;
+  }
+}
+
+// Table of contents
+.toc {
+  font-size: 0.9em;
+
+  .depth-1 {
+    font-weight: 600;
+  }
+}
+
+// Page title - simple and clean
+.article-title {
+  margin-bottom: 0.5em;
+}
+
+// Content meta (dates, etc)
+.content-meta {
+  color: var(--darkgray);
+  font-size: 0.9em;
+  margin-bottom: 2em;
+}
+
+// Selection color
+::selection {
+  background: var(--highlight);
+}
+
+// Dark mode subtle adjustments
+[data-theme="dark"] {
+  img {
+    opacity: 0.95;
   }
 }
