@@ -22,32 +22,32 @@ const config: QuartzConfig = {
       fontOrigin: "local",
       cdnCaching: true,
       typography: {
-        header: "Mononoki Nerd Font Propo",
-        body: "Mononoki Nerd Font Propo",
-        code: "Mononoki Nerd Font Propo",
+        header: "MonoLisa",
+        body: "MonoLisa",
+        code: "MonoLisa",
       },
       colors: {
         lightMode: {
-          light: "#FFFCF0",           // bg: Flexoki Paper
-          lightgray: "#F2F0E5",       // bg-2: Flexoki Base-50
-          gray: "#B7B5AC",            // ui-3: Flexoki Base-400
-          darkgray: "#6F6E69",        // tx-2: Flexoki Base-600
-          dark: "#1C1B1A",            // tx: Flexoki Base-950
-          secondary: "#205EA6",       // accent: Flexoki Blue-600
-          tertiary: "#24837B",        // secondary accent: Flexoki Cyan-600
-          highlight: "rgba(32, 94, 166, 0.10)",
-          textHighlight: "#205EA622",
+          light: "#F7F5F2",
+          lightgray: "#EEEAE4",
+          gray: "#D1CCC5",
+          darkgray: "#5B5954",
+          dark: "#1B1A18",
+          secondary: "#2E4A66",
+          tertiary: "#688199",
+          highlight: "rgba(46, 74, 102, 0.10)",
+          textHighlight: "#2E4A6620",
         },
         darkMode: {
-          light: "#100F0F",           // bg: Flexoki Black
-          lightgray: "#1C1B1A",       // bg-2: Flexoki Base-950
-          gray: "#575653",            // ui-3: Flexoki Base-700
-          darkgray: "#B7B5AC",        // tx-2: Flexoki Base-400
-          dark: "#CECDC3",            // tx: Flexoki Base-200
-          secondary: "#4385BE",       // accent: Flexoki Blue-400
-          tertiary: "#3AA99F",        // secondary: Flexoki Cyan-400
-          highlight: "rgba(67, 133, 190, 0.15)",
-          textHighlight: "#4385BE33",
+          light: "#12110F",
+          lightgray: "#1A1917",
+          gray: "#3E3A36",
+          darkgray: "#C7C1BA",
+          dark: "#F0ECE6",
+          secondary: "#7AA0C0",
+          tertiary: "#9BB6CC",
+          highlight: "rgba(122, 160, 192, 0.18)",
+          textHighlight: "#7AA0C033",
         },
       },
     },
