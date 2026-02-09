@@ -1,37 +1,6 @@
 @use "./base.scss";
 
-// IBM Plex Serif - font face definitions
-@font-face {
-  font-family: "IBM Plex Serif";
-  src: url("static/fonts/IBMPlexSerif-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "IBM Plex Serif";
-  src: url("static/fonts/IBMPlexSerif-Italic.woff2") format("woff2");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "IBM Plex Serif";
-  src: url("static/fonts/IBMPlexSerif-SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "IBM Plex Serif";
-  src: url("static/fonts/IBMPlexSerif-SemiBoldItalic.woff2") format("woff2");
-  font-weight: 600;
-  font-style: italic;
-  font-display: swap;
-}
+// Fonts are loaded from Google Fonts via quartz.config.ts (fontOrigin: "googleFonts").
 
 // ============================================
 // Minimalist Aesthetic - Quiet, Focused
