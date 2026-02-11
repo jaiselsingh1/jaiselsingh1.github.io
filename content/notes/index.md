@@ -3,7 +3,7 @@ title: Notes
 ---
 # Notes
 
-A collection of things I'm learning and thinking about. More to come.
+The workshop. Things I'm pulling apart, putting back together, and writing up along the way.
 
 ---
 
