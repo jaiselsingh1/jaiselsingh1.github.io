@@ -22,9 +22,9 @@ const config: QuartzConfig = {
       fontOrigin: "local",
       cdnCaching: true,
       typography: {
-        header: "Ioskeley Mono",
-        body: "Ioskeley Mono",
-        code: "Ioskeley Mono",
+        header: "Hack",
+        body: "Hack",
+        code: "Hack",
       },
       colors: {
         lightMode: {

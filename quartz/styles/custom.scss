@@ -2,48 +2,48 @@
 
 // Self-hosted font files in quartz/static/fonts for consistent rendering across devices.
 @font-face {
-  font-family: "Ioskeley Mono";
-  src: url("/static/fonts/IoskeleyMono-Regular.ttf") format("truetype");
+  font-family: "Hack";
+  src: url("/static/fonts/Hack-Regular.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Ioskeley Mono";
-  src: url("/static/fonts/IoskeleyMono-Italic.ttf") format("truetype");
+  font-family: "Hack";
+  src: url("/static/fonts/Hack-Italic.ttf") format("truetype");
   font-style: italic;
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Ioskeley Mono";
-  src: url("/static/fonts/IoskeleyMono-SemiBold.ttf") format("truetype");
+  font-family: "Hack";
+  src: url("/static/fonts/Hack-Bold.ttf") format("truetype");
   font-style: normal;
   font-weight: 600;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Ioskeley Mono";
-  src: url("/static/fonts/IoskeleyMono-SemiBoldItalic.ttf") format("truetype");
+  font-family: "Hack";
+  src: url("/static/fonts/Hack-BoldItalic.ttf") format("truetype");
   font-style: italic;
   font-weight: 600;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Ioskeley Mono";
-  src: url("/static/fonts/IoskeleyMono-Bold.ttf") format("truetype");
+  font-family: "Hack";
+  src: url("/static/fonts/Hack-Bold.ttf") format("truetype");
   font-style: normal;
   font-weight: 700;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Ioskeley Mono";
-  src: url("/static/fonts/IoskeleyMono-BoldItalic.ttf") format("truetype");
+  font-family: "Hack";
+  src: url("/static/fonts/Hack-BoldItalic.ttf") format("truetype");
   font-style: italic;
   font-weight: 700;
   font-display: swap;
