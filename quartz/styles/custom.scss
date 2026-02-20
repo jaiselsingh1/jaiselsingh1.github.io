@@ -47,19 +47,19 @@
   display: block;
 }
 
-.left.sidebar,
-.right.sidebar {
-  display: none;
+.page > #quartz-body .sidebar {
+  display: none !important;
 }
 
 .center {
   max-width: var(--content-width);
   margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
+  padding: 1.5rem 1.5rem 3rem;
 }
 
-.page-header {
-  margin: 0 !important;
+.page > #quartz-body .page-header,
+.spacer {
+  display: none !important;
 }
 
 article {
