@@ -6,9 +6,7 @@ title: Jaisel Singh
 
 ---
 
-### [Notes](/notes)
-
-Sketches, ideas, and works in progress.
+[Notes](/notes) — Sketches, ideas, and works in progress.
 
 ---
 
