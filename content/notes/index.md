@@ -1,8 +1,11 @@
 ---
 title: Notes
 ---
+
+[← Home](/)
+
 # Notes
 
-A minimal collection.
+A minimal collection of ideas and sketches.
 
-[[notes/coffee|Coffee]]
+- [[notes/coffee|Coffee]]

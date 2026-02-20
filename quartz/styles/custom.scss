@@ -33,11 +33,13 @@
 }
 
 :root {
-  --content-width: 68ch;
+  --content-width: 60ch;
 }
 
+// ── Layout ──────────────────────────────────────────
+
 .page {
-  max-width: 900px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
@@ -53,17 +55,26 @@
 .center {
   max-width: var(--content-width);
   margin: 0 auto;
-  padding: 2rem 1.25rem;
+  padding: 5rem 1.5rem 6rem;
 }
 
 article {
   max-width: var(--content-width);
   margin: 0 auto;
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  backdrop-filter: none;
 }
 
+// ── Typography ──────────────────────────────────────
+
 body {
-  line-height: 1.65;
+  line-height: 1.75;
   letter-spacing: 0.003em;
+  background: var(--light);
 }
 
 h1,
@@ -78,180 +89,40 @@ h6 {
 
 a {
   text-decoration: underline;
-  text-underline-offset: 0.14em;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
 }
 
-body {
-  background:
-    radial-gradient(circle at 12% 8%, rgba(0, 189, 255, 0.18), transparent 35%),
-    radial-gradient(circle at 88% 18%, rgba(255, 90, 95, 0.14), transparent 32%),
-    linear-gradient(180deg, #eef4f8 0%, #e6edf2 100%);
+a.internal {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
 }
 
-article {
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(27, 26, 24, 0.14);
-  border-radius: 16px;
-  box-shadow: 0 20px 44px rgba(20, 36, 48, 0.12);
-  padding: 2rem;
-  backdrop-filter: blur(6px);
+// ── Separators ──────────────────────────────────────
+
+hr {
+  border: none;
+  border-top: 1px solid var(--lightgray);
+  margin: 2rem 0;
 }
 
-.hiro-hero {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 14px;
-  padding: 1.4rem 1.2rem 1.2rem;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0.035) 0,
-      rgba(0, 0, 0, 0.035) 1px,
-      transparent 1px,
-      transparent 16px
-    ),
-    linear-gradient(145deg, rgba(0, 189, 255, 0.09), rgba(255, 90, 95, 0.09));
-}
-
-.hiro-hero::after {
-  content: "";
-  position: absolute;
-  top: -42px;
-  right: -42px;
-  width: 120px;
-  height: 120px;
-  border-radius: 999px;
-  background: radial-gradient(circle, rgba(0, 189, 255, 0.32), transparent 70%);
-  animation: pulse 3.2s ease-in-out infinite;
-}
-
-.hiro-kicker {
-  display: inline-block;
-  margin: 0 0 0.5rem;
-  padding: 0.18rem 0.52rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-  border-radius: 999px;
-  border: 1px solid rgba(0, 0, 0, 0.18);
-  background: rgba(255, 255, 255, 0.6);
-}
-
-.hiro-subtitle {
-  margin-top: 0.45rem;
-  margin-bottom: 1rem;
-  max-width: 50ch;
-}
-
-.hiro-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-.hiro-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 0.62rem 1rem;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  border: 1px solid transparent;
-  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-}
-
-.hiro-link.github {
-  background: linear-gradient(135deg, #111418, #24323c);
-  color: #f7fbff;
-  box-shadow: 0 10px 20px rgba(16, 22, 27, 0.3);
-}
-
-.hiro-link.x {
-  background: linear-gradient(135deg, #ff5a5f, #ff8f54);
-  color: #17120f;
-  box-shadow: 0 10px 20px rgba(173, 58, 38, 0.28);
-}
-
-.hiro-link:hover {
-  transform: translateY(-2px);
-  border-color: rgba(0, 0, 0, 0.28);
-}
-
-.minimal-note-link {
-  display: inline-block;
-  margin-top: 0.3rem;
-  padding: 0.3rem 0.6rem;
-  border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  text-decoration: none;
-  background: rgba(255, 255, 255, 0.72);
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 0.45;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.08);
-  }
-  100% {
-    opacity: 0.45;
-    transform: scale(1);
-  }
-}
+// ── Responsive ──────────────────────────────────────
 
 @media (max-width: 700px) {
   .center {
-    padding: 1rem 0.9rem;
-  }
-
-  article {
-    padding: 1.1rem;
-    border-radius: 12px;
-  }
-
-  .hiro-link {
-    width: 100%;
+    padding: 3rem 1rem 4rem;
   }
 }
 
+// ── Dark mode ───────────────────────────────────────
+
 [data-theme="dark"] body {
-  background:
-    radial-gradient(circle at 10% 10%, rgba(0, 189, 255, 0.2), transparent 35%),
-    radial-gradient(circle at 88% 18%, rgba(255, 90, 95, 0.16), transparent 34%),
-    linear-gradient(180deg, #0c1216 0%, #0a0f13 100%);
+  background: var(--light);
 }
 
 [data-theme="dark"] article {
-  background: rgba(12, 19, 24, 0.74);
-  border-color: rgba(219, 235, 245, 0.14);
-  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.35);
-}
-
-[data-theme="dark"] .hiro-hero {
-  border-color: rgba(234, 245, 255, 0.2);
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(245, 251, 255, 0.06) 0,
-      rgba(245, 251, 255, 0.06) 1px,
-      transparent 1px,
-      transparent 16px
-    ),
-    linear-gradient(145deg, rgba(0, 189, 255, 0.18), rgba(255, 90, 95, 0.16));
-}
-
-[data-theme="dark"] .hiro-kicker {
-  border-color: rgba(235, 246, 255, 0.3);
-  background: rgba(8, 14, 19, 0.55);
-}
-
-[data-theme="dark"] .minimal-note-link {
-  border-color: rgba(235, 246, 255, 0.24);
-  background: rgba(10, 16, 21, 0.55);
+  background: none;
+  border: none;
+  box-shadow: none;
 }
