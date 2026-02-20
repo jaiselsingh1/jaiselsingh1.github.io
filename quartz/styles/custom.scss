@@ -115,6 +115,18 @@ hr {
   }
 }
 
+// ── Banner ──────────────────────────────────────────
+
+.banner {
+  margin-top: 3rem;
+
+  & img {
+    width: 100%;
+    border-radius: 6px;
+    display: block;
+  }
+}
+
 // ── Dark mode ───────────────────────────────────────
 
 [data-theme="dark"] body {
