@@ -2,6 +2,10 @@
 title: Jaisel Singh
 ---
 
+<div class="banner">
+  <img src="/static/phineasandferbengineering.jpg" alt="Phineas and Ferb engineering" />
+</div>
+
 # Jaisel Singh
 
 ---
