@@ -1,32 +1,32 @@
 @use "./base.scss";
 
 @font-face {
-  font-family: "MonoLisa";
-  src: url("/static/fonts/MonoLisa-normal.ttf") format("truetype");
+  font-family: "Lilex";
+  src: url("/static/fonts/Lilex-Regular.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "MonoLisa";
-  src: url("/static/fonts/MonoLisa-italic.ttf") format("truetype");
+  font-family: "Lilex";
+  src: url("/static/fonts/Lilex-Italic.ttf") format("truetype");
   font-style: italic;
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "MonoLisa";
-  src: url("/static/fonts/MonoLisa-normal.ttf") format("truetype");
+  font-family: "Lilex";
+  src: url("/static/fonts/Lilex-Bold.ttf") format("truetype");
   font-style: normal;
   font-weight: 700;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "MonoLisa";
-  src: url("/static/fonts/MonoLisa-italic.ttf") format("truetype");
+  font-family: "Lilex";
+  src: url("/static/fonts/Lilex-BoldItalic.ttf") format("truetype");
   font-style: italic;
   font-weight: 700;
   font-display: swap;
