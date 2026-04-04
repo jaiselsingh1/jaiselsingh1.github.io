@@ -78,24 +78,31 @@ strong {
 }
 
 a {
-  font-weight: $semiBoldWeight;
-  text-decoration: none;
-  transition: color 0.2s ease;
-  color: var(--secondary);
+  font-weight: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--gray);
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  color: var(--darkgray);
 
   &:hover {
-    color: var(--tertiary);
+    color: var(--secondary);
+    text-decoration-color: var(--secondary);
   }
 
   &.internal {
-    text-decoration: none;
-    background-color: var(--highlight);
-    padding: 0 0.1rem;
-    border-radius: 5px;
+    text-decoration: underline;
+    text-decoration-color: var(--gray);
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: 1px;
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
     line-height: 1.4rem;
 
     &.broken {
-      color: var(--secondary);
+      color: var(--gray);
       opacity: 0.5;
       transition: opacity 0.2s ease;
       &:hover {
@@ -107,6 +114,7 @@ a {
       background-color: transparent;
       border-radius: 0;
       padding: 0;
+      text-decoration: none;
     }
     &.tag-link {
       &::before {
@@ -120,7 +128,7 @@ a {
     margin: 0 0.15em;
 
     > path {
-      fill: var(--dark);
+      fill: var(--darkgray);
     }
   }
 }
