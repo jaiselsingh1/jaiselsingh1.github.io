@@ -1,13 +1,13 @@
 ---
 title: Lineage
-description: People I take after.
+description: Gens et sodales.
 ---
 
 [← Home](/)
 
 # Lineage
 
-People I take after.
+Gens et sodales.
 
 ---
 

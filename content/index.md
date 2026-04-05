@@ -8,7 +8,7 @@ title: Jaisel Singh
 
 [Notes](/notes) — Sketches, ideas, and works in progress.
 
-[Lineage](/lineage) — People I take after.
+[Lineage](/lineage) — Gens et sodales.
 
 ---
 
