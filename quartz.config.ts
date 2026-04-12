@@ -22,9 +22,9 @@ const config: QuartzConfig = {
       fontOrigin: "local",
       cdnCaching: true,
       typography: {
-        header: "Iosevka KG Terminal Medium",
-        body: "Iosevka KG Terminal Medium",
-        code: "Iosevka KG Terminal Medium",
+        header: "Dank Mono",
+        body: "Dank Mono",
+        code: "Dank Mono",
       },
       colors: {
         lightMode: {
