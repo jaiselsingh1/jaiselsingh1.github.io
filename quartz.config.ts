@@ -22,9 +22,9 @@ const config: QuartzConfig = {
       fontOrigin: "local",
       cdnCaching: true,
       typography: {
-        header: "Dank Mono",
-        body: "Dank Mono",
-        code: "Dank Mono",
+        header: "Agave",
+        body: "Agave",
+        code: "Agave",
       },
       colors: {
         lightMode: {

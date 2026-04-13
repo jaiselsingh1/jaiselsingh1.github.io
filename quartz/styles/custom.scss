@@ -1,24 +1,24 @@
 @use "./base.scss";
 
 @font-face {
-  font-family: "Dank Mono";
-  src: url("/static/fonts/DankMono-Regular.otf") format("opentype");
+  font-family: "Agave";
+  src: url("/static/fonts/Agave-Regular.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Dank Mono";
-  src: url("/static/fonts/DankMono-Italic.otf") format("opentype");
+  font-family: "Agave";
+  src: url("/static/fonts/Agave-Italic.ttf") format("truetype");
   font-style: italic;
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Dank Mono";
-  src: url("/static/fonts/DankMono-Bold.otf") format("opentype");
+  font-family: "Agave";
+  src: url("/static/fonts/Agave-Bold.ttf") format("truetype");
   font-style: normal;
   font-weight: 700;
   font-display: swap;
@@ -96,7 +96,9 @@ a {
   text-decoration-color: var(--gray);
   color: var(--darkgray);
   font-weight: inherit;
-  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    text-decoration-color 0.2s ease;
 
   &:hover {
     color: var(--secondary);
