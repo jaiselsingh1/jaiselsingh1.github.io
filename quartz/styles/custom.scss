@@ -1,25 +1,49 @@
 @use "./base.scss";
 
 @font-face {
-  font-family: "Agave";
-  src: url("/static/fonts/Agave-Regular.ttf") format("truetype");
+  font-family: "IosevkaTreeLig Nerd Font";
+  src: url("/static/fonts/IosevkaTreeLigNerdFont-Regular.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Agave";
-  src: url("/static/fonts/Agave-Italic.ttf") format("truetype");
+  font-family: "IosevkaTreeLig Nerd Font";
+  src: url("/static/fonts/IosevkaTreeLigNerdFont-Italic.ttf") format("truetype");
   font-style: italic;
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Agave";
-  src: url("/static/fonts/Agave-Bold.ttf") format("truetype");
+  font-family: "IosevkaTreeLig Nerd Font";
+  src: url("/static/fonts/IosevkaTreeLigNerdFont-SemiBold.ttf") format("truetype");
   font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IosevkaTreeLig Nerd Font";
+  src: url("/static/fonts/IosevkaTreeLigNerdFont-SemiBoldItalic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IosevkaTreeLig Nerd Font";
+  src: url("/static/fonts/IosevkaTreeLigNerdFont-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IosevkaTreeLig Nerd Font";
+  src: url("/static/fonts/IosevkaTreeLigNerdFont-BoldItalic.ttf") format("truetype");
+  font-style: italic;
   font-weight: 700;
   font-display: swap;
 }

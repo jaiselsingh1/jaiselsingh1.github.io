@@ -22,9 +22,10 @@ const config: QuartzConfig = {
       fontOrigin: "local",
       cdnCaching: true,
       typography: {
-        header: "Agave",
-        body: "Agave",
-        code: "Agave",
+        title: "IosevkaTreeLig Nerd Font",
+        header: "IosevkaTreeLig Nerd Font",
+        body: "IosevkaTreeLig Nerd Font",
+        code: "IosevkaTreeLig Nerd Font",
       },
       colors: {
         lightMode: {
