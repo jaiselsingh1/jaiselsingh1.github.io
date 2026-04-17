@@ -22,10 +22,10 @@ const config: QuartzConfig = {
       fontOrigin: "local",
       cdnCaching: true,
       typography: {
-        title: "IosevkaTreeLig Nerd Font",
-        header: "IosevkaTreeLig Nerd Font",
-        body: "IosevkaTreeLig Nerd Font",
-        code: "IosevkaTreeLig Nerd Font",
+        title: "Ioskeley Mono",
+        header: "Ioskeley Mono",
+        body: "Ioskeley Mono",
+        code: "Ioskeley Mono",
       },
       colors: {
         lightMode: {
