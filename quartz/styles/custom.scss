@@ -1,60 +1,52 @@
 @use "./base.scss";
 
 @font-face {
-  font-family: "Ioskeley Mono";
+  font-family: "MonoLisa";
   src:
-    url("/static/fonts/IoskeleyMono-Regular.woff2") format("woff2"),
-    url("/static/fonts/IoskeleyMono-Regular.ttf") format("truetype");
+    url("/static/fonts/MonoLisa-normal.woff2") format("woff2"),
+    url("/static/fonts/MonoLisa-Regular.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Ioskeley Mono";
+  font-family: "MonoLisa";
   src:
-    url("/static/fonts/IoskeleyMono-Italic.woff2") format("woff2"),
-    url("/static/fonts/IoskeleyMono-Italic.ttf") format("truetype");
+    url("/static/fonts/MonoLisa-italic.woff2") format("woff2"),
+    url("/static/fonts/MonoLisa-RegularItalic.ttf") format("truetype");
   font-style: italic;
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Ioskeley Mono";
-  src:
-    url("/static/fonts/IoskeleyMono-SemiBold.woff2") format("woff2"),
-    url("/static/fonts/IoskeleyMono-SemiBold.ttf") format("truetype");
+  font-family: "MonoLisa";
+  src: url("/static/fonts/MonoLisa-Bold.ttf") format("truetype");
   font-style: normal;
   font-weight: 600;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Ioskeley Mono";
-  src:
-    url("/static/fonts/IoskeleyMono-SemiBoldItalic.woff2") format("woff2"),
-    url("/static/fonts/IoskeleyMono-SemiBoldItalic.ttf") format("truetype");
+  font-family: "MonoLisa";
+  src: url("/static/fonts/MonoLisa-BoldItalic.ttf") format("truetype");
   font-style: italic;
   font-weight: 600;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Ioskeley Mono";
-  src:
-    url("/static/fonts/IoskeleyMono-Bold.woff2") format("woff2"),
-    url("/static/fonts/IoskeleyMono-Bold.ttf") format("truetype");
+  font-family: "MonoLisa";
+  src: url("/static/fonts/MonoLisa-Bold.ttf") format("truetype");
   font-style: normal;
   font-weight: 700;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Ioskeley Mono";
-  src:
-    url("/static/fonts/IoskeleyMono-BoldItalic.woff2") format("woff2"),
-    url("/static/fonts/IoskeleyMono-BoldItalic.ttf") format("truetype");
+  font-family: "MonoLisa";
+  src: url("/static/fonts/MonoLisa-BoldItalic.ttf") format("truetype");
   font-style: italic;
   font-weight: 700;
   font-display: swap;

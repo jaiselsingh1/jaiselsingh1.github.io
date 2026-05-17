@@ -22,10 +22,10 @@ const config: QuartzConfig = {
       fontOrigin: "local",
       cdnCaching: true,
       typography: {
-        title: "Ioskeley Mono",
-        header: "Ioskeley Mono",
-        body: "Ioskeley Mono",
-        code: "Ioskeley Mono",
+        title: "MonoLisa",
+        header: "MonoLisa",
+        body: "MonoLisa",
+        code: "MonoLisa",
       },
       colors: {
         lightMode: {
