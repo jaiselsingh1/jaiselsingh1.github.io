@@ -22,10 +22,10 @@ const config: QuartzConfig = {
       fontOrigin: "local",
       cdnCaching: true,
       typography: {
-        title: "MonoLisa",
-        header: "MonoLisa",
-        body: "MonoLisa",
-        code: "MonoLisa",
+        title: "IBM Plex Serif",
+        header: "IBM Plex Serif",
+        body: "iA Writer Quattro S",
+        code: "Lilex",
       },
       colors: {
         lightMode: {
