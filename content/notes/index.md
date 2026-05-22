@@ -8,4 +8,4 @@ title: Notes
 
 A minimal collection of ideas and sketches.
 
-- [[notes/coffee|Coffee]]
+- [[notes/cnc-machining-practices|CNC Machining Practices]]
