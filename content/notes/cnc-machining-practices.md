@@ -98,6 +98,23 @@ A 3-axis mill mostly approaches from `Z`. The cutter is round. Small/long tools 
     - Raised text creates tiny internal corners and pockets around letters.
     - Prefer engraved text with a V-bit or ball end mill.
 
-## Source
+## Resources
 
-Cleaned up from my original Obsidian note on CNC machining practices, based on Adam Bender's [How to Design Parts for CNC Machining](https://youtu.be/qx_qqVmjCc0) and the Autodesk University handout that expands on the same ideas.
+Primary sources for these notes:
+
+- Adam Bender, [How to Design Parts for CNC Machining](https://youtu.be/qx_qqVmjCc0)
+- Adam Bender, [Design for CNC Milling](https://www.adambender.info/post/design-for-cnc-milling)
+- Dave Lapthorne / Autodesk University, [Designing for Manufacture: Keeping the Production Team Happy](https://static.au-uw2-prd.autodesk.com/Class_Handout_MFG323472_Designing_for_Manufacture_or_Keeping_the_Production_Team_Happy_Dave_Lapthorne.pdf)
+- Protolabs Network, [How to design parts for CNC machining](https://www.hubs.com/knowledge-base/how-design-parts-cnc-machining/)
+
+Further references from the Autodesk University handout:
+
+- Shapeoko Wiki, [Endmills](https://wiki.shapeoko.com/index.php/Endmills)
+- Haas, [Mill Chatter - Troubleshooting](https://www.haascnc.com/service/troubleshooting-and-how-to/troubleshooting/mill-chatter---troubleshooting.html)
+- Make:, [The Skinny on End Mills](https://makezine.com/2014/09/10/endmills/)
+- Micro-Machine-Shop, [End Mills / Cutters](http://www.micro-machine-shop.com/end_mills_cutters.htm)
+- Dryfinish, [Helical Machining Guidebook](https://www.slideshare.net/dryfinish/helical-machining-guidebook)
+- Regal Cutting Tools, [Which drill point angle should I be using?](https://www.regalcuttingtools.com/learning-center/articles/which-drill-point-angle-should-i-be-using)
+- Fastenal, [Screw Thread Design](https://www.fastenal.com/en/78/screw-thread-design)
+- Karl Hans Moltrecht, *Machine Shop Practice*
+- Erik Oberg et al., *Machinery's Handbook*
