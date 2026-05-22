@@ -10,6 +10,8 @@ title: Jaisel Singh
 
 [Lineage](/lineage) — Gens et sodales.
 
+[Personal Kernel](/personal-kernel) — Kendallisms and reminders.
+
 ---
 
 [GitHub](https://github.com/jaiselsingh1) · [X](https://x.com/jaiselsingh)
