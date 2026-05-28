@@ -14,6 +14,10 @@
   "scripts": {
     "quartz": "./quartz/bootstrap-cli.mjs",
     "docs": "npx quartz build --serve -d docs",
+    "notes:sync": "node scripts/sync-notes.mjs",
+    "notes:watch": "node scripts/sync-notes.mjs --watch",
+    "dev:notes": "node scripts/sync-notes.mjs --watch --serve",
+    "figures:alphago": "node scripts/generate-alphago-figures.mjs",
     "check": "tsc --noEmit && npx prettier . --check",
     "format": "npx prettier . --write",
     "test": "tsx --test",

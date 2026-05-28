@@ -55,6 +55,7 @@
 
 .center {
   max-width: var(--content-width);
+  box-sizing: border-box;
   margin: 0 auto;
   padding: 2rem 1.5rem 6rem;
 }
@@ -67,6 +68,7 @@
 article {
   max-width: var(--content-width);
   margin: 0 auto;
+  overflow-wrap: break-word;
   background: none;
   border: none;
   border-radius: 0;
@@ -160,6 +162,86 @@ article > h1:first-child {
     width: 100%;
     border-radius: 4px;
     display: block;
+  }
+}
+
+// ── Technical figures ──────────────────────────────
+
+.cnc-figure {
+  width: min(88vw, 860px);
+  margin: 2.5rem 0 2.75rem;
+  margin-left: 50%;
+  transform: translateX(-50%);
+
+  & svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  & figcaption {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.45;
+    margin-top: 0.55rem;
+    max-width: var(--content-width);
+    margin-inline: auto;
+  }
+}
+
+.cnc-hero-figure {
+  margin-top: 1.75rem;
+}
+
+.cnc-image-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--lightgray);
+  border-radius: 8px;
+  background: var(--light);
+}
+
+@media (max-width: 700px) {
+  .cnc-figure {
+    width: min(96vw, 860px);
+  }
+}
+
+// ── Visual article figures ─────────────────────────
+
+.alphago-figure,
+.technical-figure {
+  width: min(92vw, 900px);
+  margin: 2.5rem 0 2.75rem;
+  margin-left: 50%;
+  transform: translateX(-50%);
+
+  & figcaption {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.45;
+    margin-top: 0.55rem;
+    max-width: var(--content-width);
+    margin-inline: auto;
+  }
+}
+
+.alphago-image-figure img,
+.technical-image-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--lightgray);
+  border-radius: 8px;
+  background: var(--light);
+}
+
+@media (max-width: 700px) {
+  .alphago-figure,
+  .technical-figure {
+    width: min(96vw, 900px);
   }
 }
 
