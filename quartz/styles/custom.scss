@@ -246,6 +246,17 @@ article > h1:first-child {
   .technical-figure {
     width: min(96vw, 900px);
   }
+
+  .filtering-image-figure {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+
+    & img {
+      width: 760px;
+      max-width: none;
+    }
+  }
 }
 
 // ── Dark mode ───────────────────────────────────────
