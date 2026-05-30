@@ -18,6 +18,7 @@
     "notes:watch": "node scripts/sync-notes.mjs --watch",
     "dev:notes": "node scripts/sync-notes.mjs --watch --serve",
     "figures:alphago": "node scripts/generate-alphago-figures.mjs",
+    "figures:filtering": "node scripts/generate-filtering-figures.mjs",
     "check": "tsc --noEmit && npx prettier . --check",
     "format": "npx prettier . --write",
     "test": "tsx --test",

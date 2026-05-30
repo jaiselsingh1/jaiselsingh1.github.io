@@ -8,15 +8,47 @@ import matter from "gray-matter"
 import prettier from "prettier"
 
 const rootDir = path.resolve(fileURLToPath(new URL("..", import.meta.url)))
-const sourcePath =
-  process.env.ALPHAGO_SOURCE_NOTE ??
-  "/Users/jaisel/Documents/Obsidian/labspace/Bandits-RL/Alpha Go lecture.md"
-const vaultRoot = path.resolve(sourcePath, "../../")
-const targetPath = path.join(rootDir, "content/notes/from-bandits-to-alphago.md")
-const attachmentDir = path.join(rootDir, "content/notes/from-bandits-to-alphago-assets")
-const publicAttachmentPath = "./from-bandits-to-alphago-assets"
-
 const args = new Set(process.argv.slice(2))
+
+function noteConfig(config) {
+  const sourcePath = process.env[config.sourceEnv] ?? config.defaultSourcePath
+  const slug = config.slug
+
+  return {
+    ...config,
+    sourcePath,
+    vaultRoot: path.resolve(sourcePath, "../../"),
+    targetPath: path.join(rootDir, `content/notes/${slug}.md`),
+    attachmentDir: path.join(rootDir, `content/notes/${slug}-assets`),
+    publicAttachmentPath: `./${slug}-assets`,
+  }
+}
+
+const notes = [
+  noteConfig({
+    id: "alphago",
+    slug: "from-bandits-to-alphago",
+    sourceEnv: "ALPHAGO_SOURCE_NOTE",
+    defaultSourcePath: "/Users/jaisel/Documents/Obsidian/labspace/Bandits-RL/Alpha Go lecture.md",
+    sourceNote: "Obsidian/labspace/Bandits-RL/Alpha Go lecture.md",
+    staticDir: "alphago",
+    figureClass: "alphago-figure",
+    imageFigureClass: "alphago-image-figure",
+    render: renderAlphaGoArticle,
+  }),
+  noteConfig({
+    id: "filtering",
+    slug: "filtering-estimation-kalman-filters",
+    sourceEnv: "FILTERING_SOURCE_NOTE",
+    defaultSourcePath:
+      "/Users/jaisel/Documents/Obsidian/labspace/Filtering-Estimation/RLabbe KF Book.md",
+    sourceNote: "Obsidian/labspace/Filtering-Estimation/RLabbe KF Book.md",
+    staticDir: "filtering",
+    figureClass: "filtering-figure",
+    imageFigureClass: "filtering-image-figure",
+    render: renderFilteringArticle,
+  }),
+]
 
 function hashContent(value) {
   return createHash("sha256").update(value).digest("hex").slice(0, 12)
@@ -43,15 +75,7 @@ function frontmatterValue(value, fallback) {
   return value
 }
 
-function cleanSourceBullet(line) {
-  return line
-    .replace(/^\s*[-*]\s*/, "")
-    .replace(/^\s*\d+\.\s*/, "")
-    .replace(/\s+/g, " ")
-    .trim()
-}
-
-function sourceThreads(body) {
+function alphaGoThreads(body) {
   const threads = []
 
   if (body.includes("ResNets")) {
@@ -93,7 +117,47 @@ function sourceThreads(body) {
   return threads
 }
 
-function resolveAttachment(rawTarget) {
+function filteringThreads(body) {
+  const threads = []
+  const lowerBody = body.toLowerCase()
+
+  if (lowerBody.includes("detect and/or estimate changes in the process model")) {
+    threads.push(
+      "How can a filter detect model drift when the changing part of the process is not directly measured?",
+    )
+  }
+
+  if (lowerBody.includes("lag error") || lowerBody.includes("systematic lag")) {
+    threads.push(
+      "When should lag be treated as a tuning problem, and when is it evidence that the state model needs acceleration or a different process term?",
+    )
+  }
+
+  if (
+    lowerBody.includes("not lie to the filter") ||
+    lowerBody.includes("not to lie to the filter")
+  ) {
+    threads.push(
+      "How should gains or covariance terms be chosen from real sensor behavior instead of tuned to one convenient data set?",
+    )
+  }
+
+  if (lowerBody.includes("multidimensional systems")) {
+    threads.push(
+      "Where does the histogram filter become computationally unreasonable, and what approximation should replace it?",
+    )
+  }
+
+  if (lowerBody.includes("particle filters")) {
+    threads.push(
+      "Which tracking problems require preserving multimodality with particles instead of collapsing belief to one Gaussian?",
+    )
+  }
+
+  return threads
+}
+
+function resolveAttachment(note, rawTarget) {
   const withoutAlias = rawTarget.split("|")[0]?.split("#")[0]?.trim()
   if (!withoutAlias) return undefined
 
@@ -101,9 +165,9 @@ function resolveAttachment(rawTarget) {
   if (path.isAbsolute(withoutAlias)) {
     candidates.push(withoutAlias)
   } else {
-    candidates.push(path.resolve(path.dirname(sourcePath), withoutAlias))
-    candidates.push(path.resolve(vaultRoot, withoutAlias))
-    candidates.push(path.resolve(vaultRoot, "Images", path.basename(withoutAlias)))
+    candidates.push(path.resolve(path.dirname(note.sourcePath), withoutAlias))
+    candidates.push(path.resolve(note.vaultRoot, withoutAlias))
+    candidates.push(path.resolve(note.vaultRoot, "Images", path.basename(withoutAlias)))
   }
 
   return candidates
@@ -121,7 +185,7 @@ async function firstExisting(paths) {
   return undefined
 }
 
-async function copySourceAttachments(body) {
+async function copySourceAttachments(note, body) {
   const matches = [
     ...body.matchAll(/!\[\[([^\]]+\.(?:png|jpe?g|webp|gif|svg))(?:\|[^\]]*)?\]\]/gi),
     ...body.matchAll(/!\[[^\]]*\]\(([^)]+\.(?:png|jpe?g|webp|gif|svg))\)/gi),
@@ -129,41 +193,41 @@ async function copySourceAttachments(body) {
 
   if (matches.length === 0) return []
 
-  await mkdir(attachmentDir, { recursive: true })
+  await mkdir(note.attachmentDir, { recursive: true })
 
   const copied = []
   for (const match of matches) {
-    const candidates = resolveAttachment(decodeURI(match[1]))
+    const candidates = resolveAttachment(note, decodeURI(match[1]))
     if (!candidates) continue
 
     const src = await firstExisting(candidates)
     if (!src) continue
 
     const safeName = path.basename(src).replace(/[^\w.-]+/g, "-")
-    const dest = path.join(attachmentDir, safeName)
+    const dest = path.join(note.attachmentDir, safeName)
     await copyFile(src, dest)
     copied.push({
       alt: path.basename(src, path.extname(src)).replaceAll("-", " "),
-      href: `${publicAttachmentPath}/${safeName}`,
+      href: `${note.publicAttachmentPath}/${safeName}`,
     })
   }
 
   return copied
 }
 
-function figure(name, alt, caption) {
-  return `<figure class="alphago-figure alphago-image-figure">
-  <img src="/static/alphago/${name}.png" alt="${alt}" />
+function figure(note, name, alt, caption) {
+  return `<figure class="${note.figureClass} ${note.imageFigureClass}">
+  <img src="/static/${note.staticDir}/${name}.png" alt="${alt}" />
   <figcaption>${caption}</figcaption>
 </figure>`
 }
 
-function attachmentSection(attachments) {
+function attachmentSection(note, attachments) {
   if (attachments.length === 0) return ""
 
   const figures = attachments
     .map((asset) => {
-      return `<figure class="alphago-figure alphago-image-figure">
+      return `<figure class="${note.figureClass} ${note.imageFigureClass}">
   <img src="${asset.href}" alt="${asset.alt}" />
   <figcaption>Attachment synced from the Obsidian source note.</figcaption>
 </figure>`
@@ -179,13 +243,13 @@ function threadSection(threads) {
   return `\n## Open Questions\n\n${threads.map((line) => `- ${line}`).join("\n")}\n`
 }
 
-function renderArticle({ body, data, attachments, sourceUpdated, digest }) {
+function renderAlphaGoArticle({ note, body, data, attachments, sourceUpdated, digest }) {
   const title = frontmatterValue(data.title, "From Bandits To AlphaGo")
   const description = frontmatterValue(
     data.description,
     "A visual note on how bandits, UCB, PUCT, MCTS, policy/value networks, and self-play fit together.",
   )
-  const threads = sourceThreads(body)
+  const threads = alphaGoThreads(body)
 
   const article = `[<- Notes](/notes)
 
@@ -202,6 +266,7 @@ AlphaGo is useful because it separates a hard problem into three coupled computa
 The path to that system starts with a smaller question: when you do not know which action is best, how should you trade off exploiting your current estimate against exploring what you have not measured well?
 
 ${figure(
+  note,
   "exploration-exploitation",
   "Reward distributions and confidence intervals for four bandit arms.",
   "The bandit problem separates the hidden reward distributions from the learner's current estimates. Exploration is valuable where uncertainty is still wide.",
@@ -245,6 +310,7 @@ $$
 The first term is exploitation: what the data currently says. The second term is an exploration bonus: how much optimism the algorithm assigns because the arm has not been measured enough.
 
 ${figure(
+  note,
   "ucb-bonus",
   "The UCB bonus decays as an arm is sampled more often.",
   "UCB is not random dithering. It turns uncertainty into a bonus term, so rarely sampled arms can temporarily outrank arms with higher empirical means.",
@@ -261,6 +327,7 @@ $$
 It asks how much reward you left on the table compared with always pulling the best arm.
 
 ${figure(
+  note,
   "regret-curves",
   "Cumulative reward and regret definition.",
   "Regret is the cumulative gap between the learner and the best fixed arm in hindsight.",
@@ -284,6 +351,7 @@ $$
 The $Q(s,a)$ term is the backed-up value estimate for taking move $a$ from state $s$. The $P(s,a)$ term is the neural network's prior probability for that move. $N(s)$ is the number of visits to the parent state, and $N(s,a)$ is the number of visits to the child edge.
 
 ${figure(
+  note,
   "ucb-to-puct",
   "UCB and PUCT as index rules over different objects.",
   "PUCT keeps the index-rule shape of UCB, but scores child edges in a search tree and weights exploration by a learned policy prior.",
@@ -298,6 +366,7 @@ Go is deterministic, so the uncertainty here is not "what reward will this stoch
 Monte Carlo Tree Search is the procedure that turns those scores into an actual move. At each board position, AlphaGo runs many simulations rooted at the current state. A simulation is not a full game in the human sense; it is one pass through the current search tree that expands or updates a small part of it.
 
 ${figure(
+  note,
   "mcts-loop",
   "One simulation through an MCTS tree.",
   "Each simulation descends by PUCT, expands a leaf, evaluates it with the network, and backs the value up along the selected path.",
@@ -337,6 +406,7 @@ The rollout policy played forward cheaply from the leaf rather than running a fu
 The Go board can be encoded as a stack of feature planes: current-player stones, opponent stones, empty intersections, history, legal-move masks, or other auxiliary state depending on the implementation. Conceptually it is image-like, but the pixels are board facts rather than colors.
 
 ${figure(
+  note,
   "policy-value-network",
   "Board encoding, policy/value heads, and self-play improvement loop.",
   "The network gives MCTS both a prior over legal moves and a value estimate; self-play trains the network toward the stronger targets produced by search.",
@@ -396,11 +466,11 @@ ${threadSection(threads)}
 - Dwarkesh Patel, [Eric Jang - Building AlphaGo from scratch](https://www.dwarkesh.com/p/eric-jang)
 - YouTube, [Dwarkesh Podcast with Eric Jang](https://youtu.be/X_ZVSPcZhtw?si=pu5tTjk1leVFcr8M)
 - Eric Jang, [autogo](https://github.com/ericjang/autogo)
-- Peter Auer, Nicolò Cesa-Bianchi, and Paul Fischer, [Finite-time Analysis of the Multiarmed Bandit Problem](https://link.springer.com/article/10.1023/A:1013689704352)
+- Peter Auer, Nicol\u00f2 Cesa-Bianchi, and Paul Fischer, [Finite-time Analysis of the Multiarmed Bandit Problem](https://link.springer.com/article/10.1023/A:1013689704352)
 - Cameron Browne et al., [A Survey of Monte Carlo Tree Search Methods](https://ieeexplore.ieee.org/document/6145622)
 - David Silver et al., [Mastering the game of Go with deep neural networks and tree search](https://www.nature.com/articles/nature16961)
 - David Silver et al., [Mastering the game of Go without human knowledge](https://www.nature.com/articles/nature24270)
-${attachmentSection(attachments)}
+${attachmentSection(note, attachments)}
 `
 
   const frontmatter = {
@@ -408,7 +478,7 @@ ${attachmentSection(attachments)}
     description,
     tags: ["notes", "reinforcement-learning", "alphago"],
     date: frontmatterValue(data.date, "2026-05-27"),
-    sourceNote: "Obsidian/labspace/Bandits-RL/Alpha Go lecture.md",
+    sourceNote: note.sourceNote,
     sourceUpdated,
     sourceDigest: digest,
   }
@@ -416,25 +486,242 @@ ${attachmentSection(attachments)}
   return matter.stringify(article, frontmatter)
 }
 
-async function syncOnce() {
-  const raw = await readFile(sourcePath, "utf8")
+function renderFilteringArticle({ note, body, data, attachments, sourceUpdated, digest }) {
+  const title = frontmatterValue(data.title, "Filtering, Estimation, And Kalman Filters")
+  const description = frontmatterValue(
+    data.description,
+    "A visual note on noisy sensors, predictor-corrector filters, Bayes filters, and the Kalman filter bridge.",
+  )
+  const threads = filteringThreads(body)
+
+  const article = `[<- Notes](/notes)
+
+# ${title}
+
+_A curated public version of my Obsidian notes while working through Roger Labbe's [Kalman and Bayesian Filters in Python](https://github.com/rlabbe/Kalman-and-Bayesian-Filters-in-Python) and Thrun, Burgard, and Fox's [Probabilistic Robotics](https://robots.stanford.edu/probabilistic-robotics/)._
+
+Filtering is the problem of estimating hidden state from imperfect information. A sensor reading is not the state. It is evidence about the state. A motion model is not the state either. It is a prediction about how the state should evolve. A useful filter keeps both sources of information and weights them by how trustworthy they are.
+
+That principle is the thread from simple g-h filters to histogram Bayes filters to Kalman filters:
+
+1. Predict what the system should do next.
+2. Compare that prediction with a measurement.
+3. Move the estimate by an amount justified by uncertainty.
+4. Carry the new estimate and uncertainty into the next step.
+
+${figure(
+  note,
+  "sensor-fusion",
+  "Two noisy sensor estimates combine into a narrower posterior estimate.",
+  "Independent imperfect measurements can produce a better estimate when their uncertainties are modeled. The fused estimate moves toward the more precise source and becomes narrower than either source alone.",
+)}
+
+## Noisy Sensors
+
+Sensors are inaccurate by design in the sense that they measure the world through noise, bias, resolution limits, latency, calibration drift, and environmental effects. The right response is not to throw away a noisy reading. It is to model how noisy the reading is.
+
+For two independent scalar Gaussian estimates, the cleanest form is precision weighting:
+
+$$
+\\mu = \\frac{\\tau_1 \\mu_1 + \\tau_2 \\mu_2}{\\tau_1 + \\tau_2},
+\\quad
+\\tau_i = \\frac{1}{\\sigma_i^2}
+$$
+
+Precision is inverse variance. A smaller variance gives a larger precision, so the fused mean moves closer to the more reliable estimate. The fused variance becomes:
+
+$$
+\\sigma^2 = \\frac{1}{\\tau_1 + \\tau_2}
+$$
+
+This is the mathematical version of the note's rule: never discard information when the uncertainty model is credible. The estimate should land between the inputs, and the uncertainty should reflect how much evidence supports it.
+
+## Predictor-Corrector Loop
+
+A filter becomes useful when measurements arrive over time. At each epoch, it alternates between a prediction step and an update step.
+
+${figure(
+  note,
+  "predict-update-loop",
+  "Prediction and measurement update as a recurrent filter loop.",
+  "Prediction propagates the state through a process model and increases uncertainty. Measurement update uses the residual to correct the state and usually reduces uncertainty.",
+)}
+
+The prediction step uses a process model:
+
+$$
+\\hat{x}_k^- = f(\\hat{x}_{k-1}^+, u_k)
+$$
+
+The update step compares the measurement with what the prediction expected:
+
+$$
+r_k = z_k - h(\\hat{x}_k^-)
+$$
+
+The residual, also called the innovation, is the part of the measurement not explained by the prediction. A scalar update has the form:
+
+$$
+\\hat{x}_k^+ = \\hat{x}_k^- + K_k r_k
+$$
+
+The gain $K_k$ controls how far the estimate moves toward the measurement. If the prediction is trusted more, $K_k$ is small. If the measurement is trusted more, $K_k$ is large.
+
+${figure(
+  note,
+  "residual-line",
+  "Prediction, measurement, residual, and updated estimate on one line.",
+  "The update is a movement along the residual line. The gain determines where the posterior estimate lands between prediction and measurement.",
+)}
+
+## g-h Filters
+
+The g-h filter, also called an alpha-beta filter, is the compact version of this idea for position and rate. It tracks a value $x$ and its rate $\\dot{x}$.
+
+\`\`\`text
+x_pred = x + dx * dt
+dx_pred = dx
+
+residual = z - x_pred
+
+x = x_pred + g * residual
+dx = dx_pred + h * residual / dt
+\`\`\`
+
+The $g$ gain decides how much the position estimate follows the measurement. The $h$ gain decides how much the rate estimate changes after seeing the residual. Large gains react quickly but pass more measurement noise through. Small gains reject noise but lag behind real changes.
+
+${figure(
+  note,
+  "gh-tradeoff",
+  "A g-h filter trading off noise rejection against lag under model mismatch.",
+  "Gains are not decoration. They encode a belief about sensor noise and process behavior. Bad gains can look good on one data set and fail when the motion changes.",
+)}
+
+This is why filters are designed, not selected ad hoc. If the real system accelerates but the model assumes constant velocity, no choice of fixed $g$ and $h$ can remove the systematic lag completely. The filter is reporting a modeling mistake, not only a tuning mistake.
+
+## Bayesian Filters
+
+Bayesian filtering keeps a belief distribution over state. The prior is the belief before incorporating the new measurement. The posterior is the belief after incorporating it.
+
+For a discrete state space, prediction is:
+
+$$
+\\overline{bel}(x_k) =
+\\sum_{x_{k-1}} p(x_k \\mid u_k, x_{k-1}) bel(x_{k-1})
+$$
+
+Update is:
+
+$$
+bel(x_k) = \\eta\\, p(z_k \\mid x_k)\\, \\overline{bel}(x_k)
+$$
+
+The likelihood $p(z_k \\mid x_k)$ scores how compatible the measurement is with each possible state. It does not need to sum to one over states; the normalizer $\\eta$ turns the product back into a probability distribution.
+
+${figure(
+  note,
+  "histogram-bayes",
+  "A histogram Bayes filter predicting by convolution and updating by likelihood multiplication.",
+  "The motion model spreads belief during prediction. The measurement model concentrates belief during update. The posterior becomes the next cycle's input.",
+)}
+
+In the hallway example from the notes, the state is a categorical distribution over positions. A motion command shifts the distribution, but uncertainty about the motion spreads probability mass to neighboring cells. For translational motion, this prediction is a convolution between the current belief and a motion-error kernel.
+
+Without probabilities, prediction looks like adding motion to a state estimate. With probabilities, prediction moves and spreads belief. That spreading is information loss. The update step can recover certainty only if the measurement is informative enough.
+
+Histogram filters are powerful because they can represent multimodal belief. They are also expensive because they must update each state cell. In high-dimensional continuous systems, this becomes the pressure that leads to approximations.
+
+## The Kalman Bridge
+
+The Kalman filter is the continuous Gaussian version of the same predictor-corrector story. It assumes the belief is summarized by a mean and covariance, and in the basic form it assumes linear dynamics and linear measurements.
+
+${figure(
+  note,
+  "kalman-bridge",
+  "Kalman filtering as Gaussian Bayes plus a matrix predict-update pipeline.",
+  "Kalman filtering preserves the Bayes filter structure while replacing full distributions with a Gaussian mean and covariance.",
+)}
+
+The linear predict step is:
+
+$$
+\\hat{x}_k^- = F_k \\hat{x}_{k-1}^+ + B_k u_k
+$$
+
+$$
+P_k^- = F_k P_{k-1}^+ F_k^T + Q_k
+$$
+
+The update step is:
+
+$$
+y_k = z_k - H_k \\hat{x}_k^-
+$$
+
+$$
+K_k = P_k^- H_k^T (H_k P_k^- H_k^T + R_k)^{-1}
+$$
+
+$$
+\\hat{x}_k^+ = \\hat{x}_k^- + K_k y_k
+$$
+
+Here $P$ is state uncertainty, $Q$ is process noise, $R$ is measurement noise, and $H$ maps state into measurement space. The Kalman gain is not a magic knob. It is the consequence of the relative uncertainty in the prediction and the measurement.
+
+This is the compact connection: a g-h filter uses fixed gains, a histogram Bayes filter carries an explicit probability table, and a Kalman filter carries a Gaussian belief through linear algebra. All three ask the same question at every step: given my model and my measurement, how much should my belief move?
+
+${threadSection(threads)}
+
+## References
+
+- Roger Labbe, [Kalman and Bayesian Filters in Python](https://github.com/rlabbe/Kalman-and-Bayesian-Filters-in-Python)
+- Roger Labbe, [Kalman and Bayesian Filters in Python PDF](https://drive.google.com/file/d/0By_SW19c1BfhSVFzNHc0SjduNzg/view?curius=5954&resourcekey=0-41olC9ht9xE3wQe2zHZ45A)
+- Sebastian Thrun, Wolfram Burgard, and Dieter Fox, [Probabilistic Robotics](https://mitpress.mit.edu/9780262201629/probabilistic-robotics/)
+- Thrun, Burgard, and Fox, [Probabilistic Robotics official site](https://robots.stanford.edu/probabilistic-robotics/)
+${attachmentSection(note, attachments)}
+`
+
+  const frontmatter = {
+    title,
+    description,
+    tags: ["notes", "filtering", "estimation", "kalman-filters"],
+    date: frontmatterValue(data.date, "2026-05-30"),
+    sourceNote: note.sourceNote,
+    sourceUpdated,
+    sourceDigest: digest,
+  }
+
+  return matter.stringify(article, frontmatter)
+}
+
+async function syncOne(note) {
+  const raw = await readFile(note.sourcePath, "utf8")
   const parsed = matter(raw)
-  const info = await stat(sourcePath)
+  const info = await stat(note.sourcePath)
   const sourceUpdated = formatDate(info.mtime)
   const digest = hashContent(raw)
-  const attachments = await copySourceAttachments(parsed.content)
-  const rendered = renderArticle({
+  const attachments = await copySourceAttachments(note, parsed.content)
+  const rendered = note.render({
+    note,
     body: parsed.content,
     data: parsed.data,
     attachments,
     sourceUpdated,
     digest,
   })
-  const formatted = await prettier.format(rendered, { filepath: targetPath })
+  const formatted = await prettier.format(rendered, { filepath: note.targetPath })
 
-  await mkdir(path.dirname(targetPath), { recursive: true })
-  await writeFile(targetPath, formatted, "utf8")
-  console.log(`Synced ${path.basename(sourcePath)} -> ${path.relative(rootDir, targetPath)}`)
+  await mkdir(path.dirname(note.targetPath), { recursive: true })
+  await writeFile(note.targetPath, formatted, "utf8")
+  console.log(
+    `Synced ${path.basename(note.sourcePath)} -> ${path.relative(rootDir, note.targetPath)}`,
+  )
+}
+
+async function syncAll() {
+  for (const note of notes) {
+    await syncOne(note)
+  }
 }
 
 function startQuartzPreview() {
@@ -447,20 +734,26 @@ function startQuartzPreview() {
 }
 
 async function main() {
-  await syncOnce()
+  await syncAll()
 
   if (!args.has("--watch")) return
 
   const quartz = args.has("--serve") ? startQuartzPreview() : undefined
-  const watcher = chokidar.watch(sourcePath, { ignoreInitial: true })
+  const sourceToNote = new Map(notes.map((note) => [path.resolve(note.sourcePath), note]))
+  const watcher = chokidar.watch(
+    notes.map((note) => note.sourcePath),
+    { ignoreInitial: true },
+  )
 
-  watcher.on("change", () => {
-    syncOnce().catch((error) => {
+  watcher.on("change", (changedPath) => {
+    const note = sourceToNote.get(path.resolve(changedPath))
+    const task = note ? syncOne(note) : syncAll()
+    task.catch((error) => {
       console.error(error)
     })
   })
 
-  console.log(`Watching ${sourcePath}`)
+  console.log(`Watching ${notes.map((note) => note.sourcePath).join(", ")}`)
 
   const shutdown = async () => {
     await watcher.close()

@@ -212,6 +212,7 @@ article > h1:first-child {
 // ── Visual article figures ─────────────────────────
 
 .alphago-figure,
+.filtering-figure,
 .technical-figure {
   width: min(92vw, 900px);
   margin: 2.5rem 0 2.75rem;
@@ -229,6 +230,7 @@ article > h1:first-child {
 }
 
 .alphago-image-figure img,
+.filtering-image-figure img,
 .technical-image-figure img {
   display: block;
   width: 100%;
@@ -240,6 +242,7 @@ article > h1:first-child {
 
 @media (max-width: 700px) {
   .alphago-figure,
+  .filtering-figure,
   .technical-figure {
     width: min(96vw, 900px);
   }
