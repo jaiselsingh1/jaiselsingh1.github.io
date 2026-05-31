@@ -20,6 +20,25 @@ type TextTarget = {
   y: number
 }
 
+type TitleLayout = {
+  box: {
+    height: number
+    width: number
+    x: number
+    y: number
+  }
+  firstLineY: number
+  font: string
+  fontSize: number
+  lineHeight: number
+  lines: string[]
+}
+
+type TextTargetResult = {
+  layout?: TitleLayout
+  targets: TextTarget[]
+}
+
 type Particle = {
   activePull: number
   activeRadius: number
@@ -47,13 +66,13 @@ type WorkbenchController = {
 }
 
 const imageAspect = 16 / 9
-const sessionKey = "jaisel-workbench-intro-seen:v5"
+const sessionKey = "jaisel-workbench-intro-seen:v6"
 const particleColors = ["#f2ff45", "#d8ff4d", "#b9ff76", "#fff36a"]
 const introFormMs = 1900
 const introHoldMs = 1350
 const introDisperseMs = 1200
 const introTotalMs = introFormMs + introHoldMs + introDisperseMs
-const titleBox = { height: 0.23, width: 0.54, x: 0.25, y: 0.075 }
+const titleBox = { height: 0.31, width: 0.55, x: 0.245, y: 0.055 }
 
 let activeController: WorkbenchController | undefined
 
@@ -126,8 +145,8 @@ function createFallbackTargets(imageRect: ImageRect) {
   const centerX = imageRect.x + (titleBox.x + titleBox.width / 2) * imageRect.width
   const centerY = imageRect.y + (titleBox.y + titleBox.height / 2) * imageRect.height
 
-  for (let index = 0; index < 380; index++) {
-    const angle = (index / 380) * Math.PI * 2
+  for (let index = 0; index < 560; index++) {
+    const angle = (index / 560) * Math.PI * 2
     const radius = imageRect.width * (0.07 + (index % 9) * 0.003)
     targets.push({
       x: centerX + Math.cos(angle) * radius,
@@ -138,16 +157,43 @@ function createFallbackTargets(imageRect: ImageRect) {
   return targets
 }
 
-function createTextTargets(
-  canvasWidth: number,
+function createTitleLines(message: string) {
+  const normalized = message.trim()
+
+  if (normalized.toLowerCase() === "jaisel's workbench") {
+    return ["JAISEL'S", "WORKBENCH"]
+  }
+
+  const words = normalized.split(/\s+/).filter(Boolean)
+  if (words.length < 2) return [normalized.toUpperCase()]
+
+  const midpoint = Math.ceil(words.length / 2)
+  return [
+    words.slice(0, midpoint).join(" ").toUpperCase(),
+    words.slice(midpoint).join(" ").toUpperCase(),
+  ]
+}
+
+function selectTextTargets(targets: TextTarget[], maxTargets: number) {
+  if (targets.length <= maxTargets) return shuffled(targets)
+
+  const selected: TextTarget[] = []
+  const step = targets.length / maxTargets
+
+  for (let index = 0; index < maxTargets; index++) {
+    const jitter = ((index % 5) / 5) * step
+    selected.push(targets[Math.min(targets.length - 1, Math.floor(index * step + jitter))])
+  }
+
+  return shuffled(selected)
+}
+
+function measureTitleLayout(
+  context: CanvasRenderingContext2D,
   visibleWidth: number,
   imageRect: ImageRect,
   message: string,
 ) {
-  const sampleCanvas = document.createElement("canvas")
-  const sampleContext = sampleCanvas.getContext("2d", { willReadFrequently: true })
-  if (!sampleContext) return createFallbackTargets(imageRect)
-
   const isMobileView = visibleWidth < 760
   const titleCenter = imageRect.x + (titleBox.x + titleBox.width / 2) * imageRect.width
   const titleWidth = isMobileView
@@ -155,62 +201,120 @@ function createTextTargets(
     : imageRect.width * titleBox.width
   const box = {
     height: Math.max(
-      isMobileView ? 96 : 120,
-      imageRect.height * (isMobileView ? 0.18 : titleBox.height),
+      isMobileView ? 136 : 180,
+      imageRect.height * (isMobileView ? 0.2 : titleBox.height),
     ),
     width: Math.max(isMobileView ? 280 : 320, titleWidth),
     x: isMobileView ? titleCenter - titleWidth / 2 : imageRect.x + imageRect.width * titleBox.x,
     y: imageRect.y + imageRect.height * titleBox.y,
   }
-  const sampleWidth = Math.floor(box.width)
-  const sampleHeight = Math.floor(box.height)
+  const lines = createTitleLines(message)
+  const maxFontSize = Math.min(box.height / (lines.length * 1.24), box.width * 0.14)
+  const minFontSize = isMobileView ? 20 : 28
+  let fontSize = Math.max(minFontSize, Math.floor(maxFontSize))
+
+  while (fontSize > minFontSize) {
+    const font = `900 ${fontSize}px "Arial Rounded MT Bold", "Arial Black", "Trebuchet MS", sans-serif`
+    context.font = font
+    const widestLine = Math.max(...lines.map((line) => context.measureText(line).width))
+    const lineHeight = fontSize * 1.12
+    if (widestLine <= box.width * 0.84 && lineHeight * lines.length <= box.height * 0.84) {
+      return {
+        box,
+        firstLineY: box.height * 0.5 - ((lines.length - 1) * lineHeight) / 2,
+        font,
+        fontSize,
+        lineHeight,
+        lines,
+      }
+    }
+    fontSize -= 2
+  }
+
+  const font = `900 ${fontSize}px "Arial Rounded MT Bold", "Arial Black", "Trebuchet MS", sans-serif`
+  const lineHeight = fontSize * 1.12
+
+  return {
+    box,
+    firstLineY: box.height * 0.5 - ((lines.length - 1) * lineHeight) / 2,
+    font,
+    fontSize,
+    lineHeight,
+    lines,
+  }
+}
+
+function drawTitleText(
+  context: CanvasRenderingContext2D,
+  layout: TitleLayout,
+  drawLine: (line: string, x: number, y: number) => void,
+) {
+  context.font = layout.font
+  context.textAlign = "center"
+  context.textBaseline = "middle"
+  layout.lines.forEach((line, index) => {
+    drawLine(
+      line,
+      layout.box.x + layout.box.width / 2,
+      layout.box.y + layout.firstLineY + index * layout.lineHeight,
+    )
+  })
+}
+
+function createTextTargets(
+  canvasWidth: number,
+  visibleWidth: number,
+  imageRect: ImageRect,
+  message: string,
+): TextTargetResult {
+  const sampleCanvas = document.createElement("canvas")
+  const sampleContext = sampleCanvas.getContext("2d", { willReadFrequently: true })
+  if (!sampleContext) return { targets: createFallbackTargets(imageRect) }
+
+  const layout = measureTitleLayout(sampleContext, visibleWidth, imageRect, message)
+  const sampleWidth = Math.floor(layout.box.width)
+  const sampleHeight = Math.floor(layout.box.height)
 
   sampleCanvas.width = sampleWidth
   sampleCanvas.height = sampleHeight
   sampleContext.clearRect(0, 0, sampleWidth, sampleHeight)
   sampleContext.fillStyle = "#fff"
+  sampleContext.font = layout.font
+  sampleContext.lineJoin = "round"
+  sampleContext.lineWidth = Math.max(2, layout.fontSize * 0.035)
+  sampleContext.strokeStyle = "#fff"
   sampleContext.textAlign = "center"
   sampleContext.textBaseline = "middle"
 
-  const lines = isMobileView ? ["Jaisel's", "Workbench"] : [message]
-  const maxFontSize = Math.min(sampleHeight * 0.62, sampleWidth * 0.12)
-  const minFontSize = isMobileView ? 20 : 28
-  let fontSize = Math.max(minFontSize, Math.floor(maxFontSize))
-  while (fontSize > minFontSize) {
-    sampleContext.font = `900 ${fontSize}px "Arial Rounded MT Bold", "Trebuchet MS", sans-serif`
-    const widestLine = Math.max(...lines.map((line) => sampleContext.measureText(line).width))
-    const lineHeight = fontSize * 1.04
-    if (widestLine <= sampleWidth * 0.94 && lineHeight * lines.length <= sampleHeight * 0.82) break
-    fontSize -= 2
-  }
-
-  sampleContext.font = `900 ${fontSize}px "Arial Rounded MT Bold", "Trebuchet MS", sans-serif`
-  const lineHeight = fontSize * 1.04
-  const firstLineY = sampleHeight * 0.5 - ((lines.length - 1) * lineHeight) / 2
-  lines.forEach((line, index) => {
-    sampleContext.fillText(line, sampleWidth / 2, firstLineY + index * lineHeight)
+  layout.lines.forEach((line, index) => {
+    const y = layout.firstLineY + index * layout.lineHeight
+    sampleContext.strokeText(line, sampleWidth / 2, y)
+    sampleContext.fillText(line, sampleWidth / 2, y)
   })
 
   const image = sampleContext.getImageData(0, 0, sampleWidth, sampleHeight)
   const targets: TextTarget[] = []
-  const gap = visibleWidth < 760 ? 5 : canvasWidth < 1200 ? 8 : 9
+  const gap = visibleWidth < 760 ? 5 : canvasWidth < 1200 ? 6 : 7
 
   for (let y = 0; y < sampleHeight; y += gap) {
     for (let x = 0; x < sampleWidth; x += gap) {
       const alpha = image.data[(y * sampleWidth + x) * 4 + 3]
-      if (alpha > 80) {
+      if (alpha > 96) {
         targets.push({
-          x: box.x + x,
-          y: box.y + y,
+          x: layout.box.x + x,
+          y: layout.box.y + y,
         })
       }
     }
   }
 
-  if (targets.length === 0) return createFallbackTargets(imageRect)
+  if (targets.length === 0) return { targets: createFallbackTargets(imageRect) }
 
-  const maxTargets = visibleWidth < 760 ? 760 : canvasWidth < 1200 ? 860 : 980
-  return shuffled(targets).slice(0, maxTargets)
+  const maxTargets = visibleWidth < 760 ? 860 : canvasWidth < 1200 ? 1000 : 1180
+  return {
+    layout,
+    targets: selectTextTargets(targets, maxTargets),
+  }
 }
 
 function getSpawnPoint(width: number, height: number) {
@@ -279,14 +383,15 @@ function createParticles(
   return targets.map((target, index) => {
     const spawn = getSpawnPoint(width, height)
     const orbitAngle = Math.random() * Math.PI * 2
-    const titleAnchor = index % 5 !== 0
+    const titleAnchor = index % 10 !== 0
     const portalIndex = titleAnchor
       ? index % portalList.length
-      : Math.floor(index / 5) % portalList.length
+      : Math.floor(index / 10) % portalList.length
     const portal = portalList[portalIndex]
     const orbitRadius = portal.radius * (0.46 + Math.random() * 0.92)
     const portalX = portal.x + Math.cos(orbitAngle) * orbitRadius
     const portalY = portal.y + Math.sin(orbitAngle) * orbitRadius
+    const size = titleAnchor ? 1.05 + Math.random() * 1.15 : 1.55 + Math.random() * 2.05
 
     return {
       activePull: Math.random(),
@@ -296,7 +401,7 @@ function createParticles(
       orbitRadius,
       portalIndex,
       seed: Math.random() * 1000,
-      size: 1.55 + Math.random() * 2.05,
+      size,
       speed: 0.00045 + Math.random() * 0.00042,
       startX: spawn.x,
       startY: spawn.y,
@@ -340,6 +445,7 @@ function createWorkbench(root: HTMLElement): WorkbenchController | undefined {
   let particles: Particle[] = []
   let portals: WorkbenchPortal[] = []
   let resizeFrame = 0
+  let titleLayout: TitleLayout | undefined
   let userScrolledScene = false
 
   function centerScene(imageRect: ImageRect) {
@@ -378,8 +484,20 @@ function createWorkbench(root: HTMLElement): WorkbenchController | undefined {
 
     const imageRect = getImageRect(stageElement)
     portals = measurePortals(root, imageRect)
-    const targets = createTextTargets(canvasWidth, viewportElement.clientWidth, imageRect, message)
-    particles = createParticles(targets, portals, canvasWidth, canvasHeight, !introComplete)
+    const textTargets = createTextTargets(
+      canvasWidth,
+      viewportElement.clientWidth,
+      imageRect,
+      message,
+    )
+    titleLayout = textTargets.layout
+    particles = createParticles(
+      textTargets.targets,
+      portals,
+      canvasWidth,
+      canvasHeight,
+      !introComplete,
+    )
     introStart = performance.now()
     centerScene(imageRect)
   }
@@ -466,7 +584,7 @@ function createWorkbench(root: HTMLElement): WorkbenchController | undefined {
 
   function getParticleTarget(particle: Particle, time: number) {
     const shouldStayTitle = activePortal
-      ? particle.textAnchor && particle.activePull > 0.34
+      ? particle.textAnchor && particle.activePull > 0.1
       : particle.textAnchor
 
     if (shouldStayTitle) return getTitleTarget(particle, time)
@@ -515,6 +633,29 @@ function createWorkbench(root: HTMLElement): WorkbenchController | undefined {
     context.restore()
   }
 
+  function drawTitleGuide(time: number) {
+    if (!titleLayout) return
+
+    const shimmer = reducedMotion ? 0 : Math.sin(time * 0.002) * 0.025
+
+    context.save()
+    context.lineJoin = "round"
+    context.globalCompositeOperation = "source-over"
+    context.lineWidth = Math.max(4, titleLayout.fontSize * 0.16)
+    context.strokeStyle = `rgba(8, 32, 28, ${0.2 + shimmer})`
+    drawTitleText(context, titleLayout, (line, x, y) => context.strokeText(line, x, y))
+
+    context.globalCompositeOperation = "lighter"
+    context.shadowColor = "rgba(242, 255, 69, 0.42)"
+    context.shadowBlur = titleLayout.fontSize * 0.1
+    context.lineWidth = Math.max(2, titleLayout.fontSize * 0.035)
+    context.strokeStyle = `rgba(242, 255, 69, ${0.26 + shimmer})`
+    context.fillStyle = `rgba(242, 255, 69, ${0.075 + shimmer})`
+    drawTitleText(context, titleLayout, (line, x, y) => context.strokeText(line, x, y))
+    drawTitleText(context, titleLayout, (line, x, y) => context.fillText(line, x, y))
+    context.restore()
+  }
+
   function updateIntroParticle(particle: Particle, elapsed: number) {
     if (elapsed < introFormMs) {
       const amount = easeOutCubic(clamp(elapsed / introFormMs, 0, 1))
@@ -560,7 +701,7 @@ function createWorkbench(root: HTMLElement): WorkbenchController | undefined {
 
       if (distanceSquared > 1 && distanceSquared < influence * influence) {
         const distance = Math.sqrt(distanceSquared)
-        const force = (1 - distance / influence) * 1.1
+        const force = (1 - distance / influence) * (particle.textAnchor ? 0.28 : 1.1)
         particle.vx += (dx / distance) * force
         particle.vy += (dy / distance) * force
         particle.vx += (-dy / distance) * force * 0.2
@@ -580,8 +721,16 @@ function createWorkbench(root: HTMLElement): WorkbenchController | undefined {
 
     for (const particle of particles) {
       context.beginPath()
-      context.fillStyle = "rgba(242, 255, 69, 0.15)"
-      context.arc(particle.x, particle.y, particle.size * 2.4, 0, Math.PI * 2)
+      context.fillStyle = particle.textAnchor
+        ? "rgba(242, 255, 69, 0.18)"
+        : "rgba(242, 255, 69, 0.15)"
+      context.arc(
+        particle.x,
+        particle.y,
+        particle.size * (particle.textAnchor ? 1.75 : 2.4),
+        0,
+        Math.PI * 2,
+      )
       context.fill()
 
       context.beginPath()
@@ -607,6 +756,7 @@ function createWorkbench(root: HTMLElement): WorkbenchController | undefined {
   function tick(time: number) {
     context.clearRect(0, 0, canvasWidth, canvasHeight)
     drawPortalFields(time)
+    drawTitleGuide(time)
 
     const elapsed = time - introStart
     if (!introComplete && elapsed >= introTotalMs) {
