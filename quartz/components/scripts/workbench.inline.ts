@@ -474,8 +474,10 @@ function createWorkbench(root: HTMLElement): WorkbenchController | undefined {
     if (userScrolledScene || viewportElement.scrollWidth <= viewportElement.clientWidth + 2) return
 
     const titleCenter = imageRect.x + (titleBox.x + titleBox.width / 2) * imageRect.width
+    const viewportAnchor =
+      viewportElement.scrollWidth > viewportElement.clientWidth + 2 ? 0.56 : 0.5
     const targetLeft = clamp(
-      titleCenter - viewportElement.clientWidth / 2,
+      titleCenter - viewportElement.clientWidth * viewportAnchor,
       0,
       viewportElement.scrollWidth - viewportElement.clientWidth,
     )

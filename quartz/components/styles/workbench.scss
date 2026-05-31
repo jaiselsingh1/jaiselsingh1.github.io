@@ -191,7 +191,7 @@ body[data-slug="index"] .page-footer {
 
 .workbench-portal-label {
   position: absolute;
-  left: 50%;
+  left: var(--label-left, 50%);
   top: var(--label-top, calc(100% - 0.15rem));
   bottom: var(--label-bottom, auto);
   z-index: 2;
@@ -244,6 +244,7 @@ body[data-slug="index"] .page-footer {
 }
 
 .workbench-portal-notes {
+  --label-left: 64%;
   --label-rotation: -1deg;
 }
 
