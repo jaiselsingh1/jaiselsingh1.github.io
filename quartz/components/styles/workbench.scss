@@ -198,17 +198,17 @@ body[data-slug="index"] .page-footer {
   min-width: 8.8rem;
   max-width: 12rem;
   box-sizing: border-box;
-  padding: 0.42rem 0.58rem 0.38rem;
-  border: 1px solid rgba(79, 69, 31, 0.32);
-  border-radius: 3px;
+  padding: 0.32rem 0.62rem 0.3rem;
+  border: 1px solid rgba(224, 212, 126, 0.5);
+  border-radius: 4px;
   background:
     linear-gradient(
       90deg,
-      rgba(253, 236, 135, 0.82),
-      rgba(255, 248, 182, 0.94) 38%,
-      rgba(232, 214, 119, 0.88)
+      rgba(239, 229, 146, 0.7),
+      rgba(255, 248, 190, 0.84) 44%,
+      rgba(227, 215, 128, 0.72)
     ),
-    #f4e58e;
+    rgba(244, 229, 142, 0.78);
   color: #18322d;
   opacity: 0;
   transform: translate(-50%, var(--label-rest-y, 0.35rem)) rotate(var(--label-rotation, -1.5deg));
@@ -218,33 +218,19 @@ body[data-slug="index"] .page-footer {
   text-align: center;
   pointer-events: none;
   overflow-wrap: anywhere;
+  backdrop-filter: blur(1px);
   box-shadow:
-    0 0.32rem 0.7rem rgba(8, 27, 23, 0.26),
-    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+    0 0.22rem 0.5rem rgba(8, 27, 23, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34);
 }
 
 .workbench-home[data-workbench-ready="true"] .workbench-portal-label {
-  opacity: 0.72;
+  opacity: 0.62;
 }
 
 .workbench-portal-label::before,
 .workbench-portal-label::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: 0.38rem;
-  height: 0.38rem;
-  border-radius: 999px;
-  background: rgba(77, 83, 52, 0.38);
-  transform: translateY(-50%);
-}
-
-.workbench-portal-label::before {
-  left: 0.32rem;
-}
-
-.workbench-portal-label::after {
-  right: 0.32rem;
+  display: none;
 }
 
 .workbench-portal-notes,
@@ -279,19 +265,19 @@ body[data-slug="index"] .page-footer {
 
 .workbench-portal-label span {
   display: block;
-  font-family: var(--codeFont);
-  font-size: 0.82rem;
-  font-weight: 700;
-  line-height: 1.08;
+  font-family: var(--bodyFont);
+  font-size: 0.78rem;
+  font-weight: 650;
+  line-height: 1.12;
   letter-spacing: 0;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .workbench-portal-label small {
   display: block;
   margin-top: 0.12rem;
   color: rgba(24, 50, 45, 0.78);
-  font-family: var(--codeFont);
+  font-family: var(--bodyFont);
   font-size: 0.63rem;
   line-height: 1.18;
   letter-spacing: 0;

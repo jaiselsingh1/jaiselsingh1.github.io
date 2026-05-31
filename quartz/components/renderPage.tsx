@@ -23,7 +23,7 @@ interface RenderComponents {
 }
 
 const headerRegex = new RegExp(/h[1-6]/)
-const cacheBustVersion = "workbench-v4"
+const cacheBustVersion = "workbench-v5"
 
 function cacheBust(path: string) {
   return `${path}?v=${cacheBustVersion}`
