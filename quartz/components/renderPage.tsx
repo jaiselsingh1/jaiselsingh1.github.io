@@ -23,11 +23,6 @@ interface RenderComponents {
 }
 
 const headerRegex = new RegExp(/h[1-6]/)
-const cacheBustVersion = "workbench-v6"
-
-function cacheBust(path: string) {
-  return `${path}?v=${cacheBustVersion}`
-}
 
 export function pageResources(
   baseDir: FullSlug | RelativeURL,
@@ -39,13 +34,13 @@ export function pageResources(
   const resources: StaticResources = {
     css: [
       {
-        content: cacheBust(joinSegments(baseDir, "index.css")),
+        content: joinSegments(baseDir, "index.css"),
       },
       ...staticResources.css,
     ],
     js: [
       {
-        src: cacheBust(joinSegments(baseDir, "prescript.js")),
+        src: joinSegments(baseDir, "prescript.js"),
         loadTime: "beforeDOMReady",
         contentType: "external",
       },
@@ -61,7 +56,7 @@ export function pageResources(
   }
 
   resources.js.push({
-    src: cacheBust(joinSegments(baseDir, "postscript.js")),
+    src: joinSegments(baseDir, "postscript.js"),
     loadTime: "afterDOMReady",
     moduleType: "module",
     contentType: "external",
