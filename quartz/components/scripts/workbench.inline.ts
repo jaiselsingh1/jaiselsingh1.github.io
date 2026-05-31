@@ -66,7 +66,7 @@ type WorkbenchController = {
 }
 
 const imageAspect = 16 / 9
-const sessionKey = "jaisel-workbench-intro-seen:v6"
+const sessionKey = "jaisel-workbench-intro-seen:v7"
 const particleColors = ["#f2ff45", "#d8ff4d", "#b9ff76", "#fff36a"]
 const introFormMs = 1900
 const introHoldMs = 1350
@@ -395,7 +395,7 @@ function createParticles(
 
     return {
       activePull: Math.random(),
-      activeRadius: portal.radius * (0.32 + Math.random() * 0.36),
+      activeRadius: portal.radius * (0.5 + Math.random() * 0.55),
       color: particleColors[index % particleColors.length],
       orbitAngle,
       orbitRadius,
@@ -433,6 +433,12 @@ function createWorkbench(root: HTMLElement): WorkbenchController | undefined {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
   const message = root.dataset.workbenchMessage ?? "Jaisel's Workbench"
   const cleanupFns: (() => void)[] = []
+  const dragState = {
+    active: false,
+    moved: false,
+    scrollLeft: 0,
+    x: 0,
+  }
   const pointer = { active: false, x: 0, y: 0 }
 
   let animationFrame = 0
@@ -447,6 +453,22 @@ function createWorkbench(root: HTMLElement): WorkbenchController | undefined {
   let resizeFrame = 0
   let titleLayout: TitleLayout | undefined
   let userScrolledScene = false
+
+  function setReadyState() {
+    if (introComplete) {
+      root.dataset.workbenchReady = "true"
+    } else {
+      delete root.dataset.workbenchReady
+    }
+  }
+
+  function setScrollableState() {
+    if (viewportElement.scrollWidth > viewportElement.clientWidth + 2) {
+      root.dataset.workbenchScrollable = "true"
+    } else {
+      delete root.dataset.workbenchScrollable
+    }
+  }
 
   function centerScene(imageRect: ImageRect) {
     if (userScrolledScene || viewportElement.scrollWidth <= viewportElement.clientWidth + 2) return
@@ -499,6 +521,8 @@ function createWorkbench(root: HTMLElement): WorkbenchController | undefined {
       !introComplete,
     )
     introStart = performance.now()
+    setReadyState()
+    setScrollableState()
     centerScene(imageRect)
   }
 
@@ -584,7 +608,7 @@ function createWorkbench(root: HTMLElement): WorkbenchController | undefined {
 
   function getParticleTarget(particle: Particle, time: number) {
     const shouldStayTitle = activePortal
-      ? particle.textAnchor && particle.activePull > 0.1
+      ? particle.textAnchor && particle.activePull > 0.05
       : particle.textAnchor
 
     if (shouldStayTitle) return getTitleTarget(particle, time)
@@ -611,7 +635,7 @@ function createWorkbench(root: HTMLElement): WorkbenchController | undefined {
 
     for (const portal of portals) {
       const isActive = activePortal === portal.id
-      const alpha = isActive ? 0.5 : 0.13
+      const alpha = isActive ? 0.34 : 0.11
       const pulse = reducedMotion ? 0 : Math.sin(time * 0.003 + portal.x) * 0.05
       const glowWidth = portal.width * (0.66 + pulse)
       const glowHeight = portal.height * (0.58 + pulse)
@@ -762,6 +786,7 @@ function createWorkbench(root: HTMLElement): WorkbenchController | undefined {
     if (!introComplete && elapsed >= introTotalMs) {
       introComplete = true
       safeSetSession(sessionKey, "true")
+      setReadyState()
     }
 
     for (const particle of particles) {
@@ -781,10 +806,44 @@ function createWorkbench(root: HTMLElement): WorkbenchController | undefined {
     pointer.active = true
     pointer.x = event.clientX - bounds.left
     pointer.y = event.clientY - bounds.top
+
+    if (dragState.active && root.dataset.workbenchScrollable === "true") {
+      const delta = event.clientX - dragState.x
+      if (Math.abs(delta) > 3) {
+        dragState.moved = true
+        userScrolledScene = true
+      }
+      viewportElement.scrollLeft = dragState.scrollLeft - delta
+    }
   }
 
   function onPointerLeave() {
     pointer.active = false
+    if (dragState.active) endDrag()
+  }
+
+  function onPointerDown(event: PointerEvent) {
+    if (event.button !== 0) return
+    if ((event.target as HTMLElement).closest("[data-workbench-portal]")) return
+    if (viewportElement.scrollWidth <= viewportElement.clientWidth + 2) return
+
+    dragState.active = true
+    dragState.moved = false
+    dragState.scrollLeft = viewportElement.scrollLeft
+    dragState.x = event.clientX
+    root.dataset.workbenchDragging = "true"
+    stageElement.setPointerCapture?.(event.pointerId)
+  }
+
+  function onPointerUp(event: PointerEvent) {
+    if (!dragState.active) return
+    stageElement.releasePointerCapture?.(event.pointerId)
+    endDrag()
+  }
+
+  function endDrag() {
+    dragState.active = false
+    delete root.dataset.workbenchDragging
   }
 
   const resizeObserver = new ResizeObserver(queueResize)
@@ -800,8 +859,17 @@ function createWorkbench(root: HTMLElement): WorkbenchController | undefined {
   viewportElement.addEventListener("scroll", onSceneScroll)
   cleanupFns.push(() => viewportElement.removeEventListener("scroll", onSceneScroll))
 
+  stageElement.addEventListener("pointerdown", onPointerDown)
+  cleanupFns.push(() => stageElement.removeEventListener("pointerdown", onPointerDown))
+
   stageElement.addEventListener("pointermove", onPointerMove)
   cleanupFns.push(() => stageElement.removeEventListener("pointermove", onPointerMove))
+
+  stageElement.addEventListener("pointerup", onPointerUp)
+  cleanupFns.push(() => stageElement.removeEventListener("pointerup", onPointerUp))
+
+  stageElement.addEventListener("pointercancel", onPointerUp)
+  cleanupFns.push(() => stageElement.removeEventListener("pointercancel", onPointerUp))
 
   stageElement.addEventListener("pointerleave", onPointerLeave)
   cleanupFns.push(() => stageElement.removeEventListener("pointerleave", onPointerLeave))

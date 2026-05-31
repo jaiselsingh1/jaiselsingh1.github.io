@@ -37,8 +37,13 @@ body[data-slug="index"] .page-footer {
   width: 100%;
   height: 100dvh;
   min-height: 36rem;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
   background: #18322d;
+  scroll-behavior: smooth;
+  scrollbar-color: rgba(242, 255, 69, 0.38) rgba(18, 43, 38, 0.62);
+  scrollbar-width: thin;
 }
 
 .workbench-stage {
@@ -46,6 +51,7 @@ body[data-slug="index"] .page-footer {
   width: 100%;
   height: 100%;
   min-width: 100%;
+  touch-action: pan-x;
 }
 
 .workbench-scene,
@@ -111,7 +117,21 @@ body[data-slug="index"] .page-footer {
   text-decoration: none;
   outline: none;
   pointer-events: auto;
+  cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+}
+
+.workbench-home[data-workbench-scrollable="true"] .workbench-stage {
+  cursor: grab;
+}
+
+.workbench-home[data-workbench-dragging="true"] .workbench-stage {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.workbench-home[data-workbench-dragging="true"] .workbench-portal {
+  pointer-events: none;
 }
 
 .workbench-portal::before,
@@ -125,6 +145,16 @@ body[data-slug="index"] .page-footer {
     opacity 0.18s ease,
     transform 0.18s ease;
   pointer-events: none;
+}
+
+.workbench-home[data-workbench-ready="true"] .workbench-portal::before {
+  opacity: 0.1;
+  transform: scale(0.9);
+}
+
+.workbench-home[data-workbench-ready="true"] .workbench-portal::after {
+  opacity: 0.24;
+  transform: scale(0.96);
 }
 
 .workbench-portal::before {
@@ -162,7 +192,9 @@ body[data-slug="index"] .page-footer {
 .workbench-portal-label {
   position: absolute;
   left: 50%;
-  top: calc(100% - 0.15rem);
+  top: var(--label-top, calc(100% - 0.15rem));
+  bottom: var(--label-bottom, auto);
+  z-index: 2;
   min-width: 8.8rem;
   max-width: 12rem;
   box-sizing: border-box;
@@ -179,7 +211,7 @@ body[data-slug="index"] .page-footer {
     #f4e58e;
   color: #18322d;
   opacity: 0;
-  transform: translate(-50%, 0.35rem) rotate(var(--label-rotation, -1.5deg));
+  transform: translate(-50%, var(--label-rest-y, 0.35rem)) rotate(var(--label-rotation, -1.5deg));
   transition:
     opacity 0.18s ease,
     transform 0.18s ease;
@@ -189,6 +221,10 @@ body[data-slug="index"] .page-footer {
   box-shadow:
     0 0.32rem 0.7rem rgba(8, 27, 23, 0.26),
     inset 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+
+.workbench-home[data-workbench-ready="true"] .workbench-portal-label {
+  opacity: 0.72;
 }
 
 .workbench-portal-label::before,
@@ -211,8 +247,26 @@ body[data-slug="index"] .page-footer {
   right: 0.32rem;
 }
 
+.workbench-portal-notes,
+.workbench-portal-lineage,
+.workbench-portal-kernel,
+.workbench-portal-github {
+  --label-top: auto;
+  --label-bottom: calc(100% + 0.2rem);
+  --label-rest-y: -0.06rem;
+  --label-active-y: -0.22rem;
+}
+
+.workbench-portal-notes {
+  --label-rotation: -1deg;
+}
+
 .workbench-portal-lineage {
   --label-rotation: 1.2deg;
+}
+
+.workbench-portal-kernel {
+  --label-rotation: 1.4deg;
 }
 
 .workbench-portal-github {
@@ -241,13 +295,44 @@ body[data-slug="index"] .page-footer {
   font-size: 0.63rem;
   line-height: 1.18;
   letter-spacing: 0;
+  opacity: 1;
+  transition:
+    max-height 0.18s ease,
+    margin-top 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.workbench-home[data-workbench-ready="true"] .workbench-portal-label small {
+  max-height: 0;
+  margin-top: 0;
+  overflow: hidden;
+  opacity: 0;
 }
 
 .workbench-portal:hover .workbench-portal-label,
 .workbench-portal:focus-visible .workbench-portal-label,
 .workbench-portal[data-workbench-active="true"] .workbench-portal-label {
   opacity: 1;
-  transform: translate(-50%, 0) rotate(var(--label-rotation, -1.5deg));
+  transform: translate(-50%, var(--label-active-y, 0)) rotate(var(--label-rotation, -1.5deg));
+}
+
+.workbench-portal:hover .workbench-portal-label small,
+.workbench-portal:focus-visible .workbench-portal-label small,
+.workbench-portal[data-workbench-active="true"] .workbench-portal-label small {
+  max-height: 2.6rem;
+  margin-top: 0.12rem;
+  opacity: 1;
+}
+
+@media (max-aspect-ratio: 16 / 9) and (min-width: 761px) {
+  .workbench-stage {
+    width: calc(max(100dvh, 36rem) * 16 / 9);
+    min-width: 100%;
+  }
+
+  .workbench-scene {
+    object-fit: fill;
+  }
 }
 
 @media (max-width: 760px) {
@@ -260,7 +345,6 @@ body[data-slug="index"] .page-footer {
     min-height: 100svh;
     overflow-x: auto;
     overflow-y: hidden;
-    overscroll-behavior-x: contain;
     scrollbar-color: rgba(242, 255, 69, 0.42) rgba(18, 43, 38, 0.72);
     scrollbar-width: thin;
   }
@@ -282,10 +366,8 @@ body[data-slug="index"] .page-footer {
   }
 
   .workbench-portal-label {
-    top: calc(100% + 0.12rem);
     min-width: 8.2rem;
     max-width: 10rem;
-    opacity: 0;
   }
 }
 
