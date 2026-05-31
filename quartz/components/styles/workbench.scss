@@ -1,0 +1,304 @@
+body[data-slug="index"] {
+  background: #18322d;
+  color: #f4f8d4;
+}
+
+body[data-slug="index"] .page {
+  max-width: none;
+  width: 100%;
+}
+
+body[data-slug="index"] .center {
+  max-width: none;
+  padding: 0;
+}
+
+body[data-slug="index"] article {
+  max-width: none;
+  width: 100%;
+}
+
+body[data-slug="index"] .center > hr,
+body[data-slug="index"] .page-footer {
+  display: none;
+}
+
+.workbench-home {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #18322d;
+  color: #f4f8d4;
+  isolation: isolate;
+}
+
+.workbench-viewport {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  min-height: 36rem;
+  overflow: hidden;
+  background: #18322d;
+}
+
+.workbench-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+}
+
+.workbench-scene,
+.workbench-scene-shade,
+.workbench-canvas,
+.workbench-shell,
+.workbench-portals {
+  position: absolute;
+  inset: 0;
+}
+
+.workbench-scene {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.workbench-scene-shade {
+  z-index: 1;
+  background:
+    radial-gradient(circle at 50% 16%, rgba(37, 75, 65, 0.1), rgba(17, 48, 42, 0.4) 72%),
+    linear-gradient(to bottom, rgba(19, 54, 48, 0.08), rgba(14, 37, 32, 0.42));
+  pointer-events: none;
+}
+
+.workbench-canvas {
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.workbench-shell {
+  z-index: 3;
+  pointer-events: none;
+}
+
+.workbench-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.workbench-portals {
+  pointer-events: none;
+}
+
+.workbench-portal {
+  position: absolute;
+  display: block;
+  box-sizing: border-box;
+  color: #18322d;
+  text-decoration: none;
+  outline: none;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.workbench-portal::before,
+.workbench-portal::after {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border-radius: 999px;
+  opacity: 0;
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+  pointer-events: none;
+}
+
+.workbench-portal::before {
+  background: radial-gradient(circle, rgba(242, 255, 69, 0.52), rgba(242, 255, 69, 0) 68%);
+  mix-blend-mode: screen;
+  filter: blur(0.45rem);
+  transform: scale(0.76);
+}
+
+.workbench-portal::after {
+  border: 1px solid rgba(242, 255, 69, 0.42);
+  box-shadow: inset 0 0 1.2rem rgba(242, 255, 69, 0.12);
+  transform: scale(0.9);
+}
+
+.workbench-portal:hover::before,
+.workbench-portal:focus-visible::before,
+.workbench-home[data-workbench-active] .workbench-portal:hover::before {
+  opacity: 0.92;
+  transform: scale(1);
+}
+
+.workbench-portal:hover::after,
+.workbench-portal:focus-visible::after {
+  opacity: 0.78;
+  transform: scale(1);
+}
+
+.workbench-portal:focus-visible {
+  outline: 2px solid #f2ff45;
+  outline-offset: 0.18rem;
+  border-radius: 8px;
+}
+
+.workbench-portal-label {
+  position: absolute;
+  left: 50%;
+  top: calc(100% - 0.15rem);
+  min-width: 8.8rem;
+  max-width: 12rem;
+  box-sizing: border-box;
+  padding: 0.42rem 0.58rem 0.38rem;
+  border: 1px solid rgba(79, 69, 31, 0.32);
+  border-radius: 3px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(253, 236, 135, 0.82),
+      rgba(255, 248, 182, 0.94) 38%,
+      rgba(232, 214, 119, 0.88)
+    ),
+    #f4e58e;
+  color: #18322d;
+  opacity: 0;
+  transform: translate(-50%, 0.35rem) rotate(var(--label-rotation, -1.5deg));
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+  text-align: center;
+  pointer-events: none;
+  overflow-wrap: anywhere;
+  box-shadow:
+    0 0.32rem 0.7rem rgba(8, 27, 23, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+
+.workbench-portal-label::before,
+.workbench-portal-label::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 999px;
+  background: rgba(77, 83, 52, 0.38);
+  transform: translateY(-50%);
+}
+
+.workbench-portal-label::before {
+  left: 0.32rem;
+}
+
+.workbench-portal-label::after {
+  right: 0.32rem;
+}
+
+.workbench-portal-lineage {
+  --label-rotation: 1.2deg;
+}
+
+.workbench-portal-github {
+  --label-rotation: -2.2deg;
+}
+
+.workbench-portal-x {
+  --label-rotation: 2deg;
+}
+
+.workbench-portal-label span {
+  display: block;
+  font-family: var(--codeFont);
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.workbench-portal-label small {
+  display: block;
+  margin-top: 0.12rem;
+  color: rgba(24, 50, 45, 0.78);
+  font-family: var(--codeFont);
+  font-size: 0.63rem;
+  line-height: 1.18;
+  letter-spacing: 0;
+}
+
+.workbench-portal:hover .workbench-portal-label,
+.workbench-portal:focus-visible .workbench-portal-label,
+.workbench-portal[data-workbench-active="true"] .workbench-portal-label {
+  opacity: 1;
+  transform: translate(-50%, 0) rotate(var(--label-rotation, -1.5deg));
+}
+
+@media (max-width: 760px) {
+  .workbench-home {
+    min-height: 100svh;
+  }
+
+  .workbench-viewport {
+    height: 100svh;
+    min-height: 100svh;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scrollbar-color: rgba(242, 255, 69, 0.42) rgba(18, 43, 38, 0.72);
+    scrollbar-width: thin;
+  }
+
+  .workbench-stage {
+    width: calc(100svh * 16 / 9);
+    min-width: 60rem;
+    height: 100svh;
+  }
+
+  .workbench-scene {
+    object-fit: fill;
+  }
+
+  .workbench-scene-shade {
+    background:
+      radial-gradient(circle at 50% 12%, rgba(37, 75, 65, 0.08), rgba(17, 48, 42, 0.34) 76%),
+      linear-gradient(to bottom, rgba(19, 54, 48, 0.04), rgba(14, 37, 32, 0.36));
+  }
+
+  .workbench-portal-label {
+    top: calc(100% + 0.12rem);
+    min-width: 8.2rem;
+    max-width: 10rem;
+    opacity: 0;
+  }
+}
+
+@media (hover: none) {
+  .workbench-portal[data-workbench-active="true"] .workbench-portal-label {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workbench-portal::before,
+  .workbench-portal::after,
+  .workbench-portal-label {
+    transition: none;
+  }
+}
