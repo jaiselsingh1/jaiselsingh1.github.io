@@ -1,6 +1,70 @@
 @use "./base.scss";
 
 @font-face {
+  font-family: "Geist";
+  src: url("/static/fonts/Geist[wght].woff2") format("woff2-variations");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/static/fonts/Geist-Italic[wght].woff2") format("woff2-variations");
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/static/fonts/GeistMono[wght].woff2") format("woff2-variations");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/static/fonts/GeistMono-Italic[wght].woff2") format("woff2-variations");
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CommitMono";
+  src: url("/static/fonts/CommitMono-400-Regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CommitMono";
+  src: url("/static/fonts/CommitMono-400-Italic.otf") format("opentype");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CommitMono";
+  src: url("/static/fonts/CommitMono-700-Regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CommitMono";
+  src: url("/static/fonts/CommitMono-700-Italic.otf") format("opentype");
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "iA Writer Quattro S";
   src: url("/static/fonts/iAWriterQuattroV.woff2") format("woff2-variations");
   font-style: normal;
@@ -89,6 +153,14 @@ body {
   line-height: 1.625;
   letter-spacing: 0;
   background: var(--light);
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-variant-ligatures: contextual;
+  font-feature-settings: "calt" 1;
 }
 
 h1,
