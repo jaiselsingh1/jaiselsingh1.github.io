@@ -1,6 +1,79 @@
 @use "./base.scss";
 
 @font-face {
+  font-family: "elzevier";
+  src: url("/static/fonts/bembo-elzevier-jetbrains/elzevier-regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "et-bembo";
+  src:
+    local("ET Bembo RomanLF"),
+    local("ETBembo-RomanLF"),
+    url("/static/fonts/bembo-elzevier-jetbrains/et-bembo-roman-line-figures.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "et-bembo";
+  src:
+    local("ET Bembo DisplayItalic"),
+    local("ETBembo-DisplayItalic"),
+    url("/static/fonts/bembo-elzevier-jetbrains/et-bembo-display-italic-old-style-figures.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "et-bembo";
+  src:
+    local("ET Bembo BoldLF"),
+    local("ETBembo-BoldLF"),
+    url("/static/fonts/bembo-elzevier-jetbrains/et-bembo-bold-line-figures.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/static/fonts/bembo-elzevier-jetbrains/JetBrainsMono-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/static/fonts/bembo-elzevier-jetbrains/JetBrainsMono-Italic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/static/fonts/bembo-elzevier-jetbrains/JetBrainsMono-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/static/fonts/bembo-elzevier-jetbrains/JetBrainsMono-SemiBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Geist";
   src: url("/static/fonts/Geist[wght].woff2") format("woff2-variations");
   font-style: normal;
@@ -153,12 +226,15 @@ body {
   line-height: 1.625;
   letter-spacing: 0;
   background: var(--light);
+  font-family: "et-bembo", Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
 
 code,
 pre,
 kbd,
 samp {
+  font-family: "JetBrains Mono", "IBM Plex Mono", "Source Code Pro", Consolas, "Liberation Mono", Menlo,
+    monospace;
   font-variant-ligatures: contextual;
   font-feature-settings: "calt" 1;
 }
@@ -169,8 +245,22 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: "et-bembo", Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
   font-weight: 400;
   letter-spacing: 0;
+}
+
+h2,
+h3 {
+  font-style: italic;
+}
+
+article > p:first-of-type::first-letter {
+  float: left;
+  padding: 0 0.1em 0.05em 0;
+  font-family: "elzevier", serif;
+  font-size: 4em;
+  line-height: 0.8;
 }
 
 a {

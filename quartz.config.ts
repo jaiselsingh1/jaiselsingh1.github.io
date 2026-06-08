@@ -22,10 +22,10 @@ const config: QuartzConfig = {
       fontOrigin: "local",
       cdnCaching: true,
       typography: {
-        title: "Geist",
-        header: "Geist",
-        body: "Geist",
-        code: "Geist Mono",
+        title: "et-bembo",
+        header: "et-bembo",
+        body: "et-bembo",
+        code: "JetBrains Mono",
       },
       colors: {
         lightMode: {
