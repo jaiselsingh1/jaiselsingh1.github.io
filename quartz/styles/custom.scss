@@ -24,7 +24,8 @@
   src:
     local("ET Bembo DisplayItalic"),
     local("ETBembo-DisplayItalic"),
-    url("/static/fonts/bembo-elzevier-jetbrains/et-bembo-display-italic-old-style-figures.ttf") format("truetype");
+    url("/static/fonts/bembo-elzevier-jetbrains/et-bembo-display-italic-old-style-figures.ttf")
+      format("truetype");
   font-style: italic;
   font-weight: 400;
   font-display: swap;
@@ -70,6 +71,22 @@
   src: url("/static/fonts/bembo-elzevier-jetbrains/JetBrainsMono-SemiBold.ttf") format("truetype");
   font-style: normal;
   font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Agave";
+  src: url("/static/fonts/Agave-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Agave";
+  src: url("/static/fonts/Agave-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
   font-display: swap;
 }
 
@@ -233,8 +250,9 @@ code,
 pre,
 kbd,
 samp {
-  font-family: "JetBrains Mono", "IBM Plex Mono", "Source Code Pro", Consolas, "Liberation Mono", Menlo,
-    monospace;
+  font-family:
+    "Agave", "JetBrains Mono", "IBM Plex Mono", "Source Code Pro", Consolas, "Liberation Mono",
+    Menlo, monospace;
   font-variant-ligatures: contextual;
   font-feature-settings: "calt" 1;
 }
