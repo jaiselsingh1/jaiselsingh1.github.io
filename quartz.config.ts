@@ -25,7 +25,7 @@ const config: QuartzConfig = {
         title: "et-bembo",
         header: "et-bembo",
         body: "et-bembo",
-        code: "JetBrains Mono",
+        code: "Agave",
       },
       colors: {
         lightMode: {
