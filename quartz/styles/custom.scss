@@ -214,7 +214,6 @@
   padding: 2rem 1.5rem 6rem;
 }
 
-.page > #quartz-body .page-header,
 .spacer {
   display: none !important;
 }
@@ -243,7 +242,13 @@ body {
   line-height: 1.625;
   letter-spacing: 0;
   background: var(--light);
-  font-family: "Agave", ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace;
+  font-family:
+    "Agave",
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    monospace;
 }
 
 code,
@@ -263,7 +268,13 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Agave", ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace;
+  font-family:
+    "Agave",
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    monospace;
   font-weight: 400;
   letter-spacing: 0;
 }
