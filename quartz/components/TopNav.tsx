@@ -1,11 +1,15 @@
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
-const TopNav: QuartzComponent = ({ cfg }: QuartzComponentProps) => {
+const TopNav: QuartzComponent = ({ cfg, fileData }: QuartzComponentProps) => {
+  const isHome = fileData.slug === "index"
+
   return (
-    <nav class="top-nav" aria-label="Primary navigation">
-      <a class="top-nav-home" href="/">
-        {cfg.pageTitle}
-      </a>
+    <nav class={isHome ? "top-nav top-nav-homepage" : "top-nav"} aria-label="Primary navigation">
+      {!isHome && (
+        <a class="top-nav-home" href="/">
+          {cfg.pageTitle}
+        </a>
+      )}
       <a class="top-nav-link" href="https://jaiselsingh1.github.io/RoBlog/">
         RoBlog
       </a>
@@ -22,6 +26,10 @@ TopNav.css = `
   width: 100%;
   font-family: var(--headerFont);
   font-size: 0.95rem;
+}
+
+.top-nav-homepage {
+  justify-content: flex-end;
 }
 
 .top-nav a {
